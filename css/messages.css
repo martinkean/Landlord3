@@ -75,10 +75,9 @@
 .conversation-avatar {
   width: 40px;
   height: 40px;
-  border-radius: 9999px;
+  border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
-  background: var(--primary-light);
 }
 
 .avatar-placeholder {
@@ -87,29 +86,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary-dark);
+  color: var(--white);
   font-weight: 600;
-  font-size: var(--font-size-sm);
 }
 
 .avatar-placeholder.blue {
-  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  background-color: #3b82f6;
 }
 
 .avatar-placeholder.dark {
-  background: linear-gradient(135deg, #334155, #1e293b);
+  background-color: #1e293b;
 }
 
 .avatar-placeholder.pink {
-  background: linear-gradient(135deg, #f472b6, #ec4899);
+  background-color: #ec4899;
 }
 
 .avatar-placeholder.teal {
-  background: linear-gradient(135deg, #2dd4bf, #14b8a6);
+  background-color: #14b8a6;
 }
 
 .avatar-placeholder.small {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .conversation-preview {
@@ -151,9 +149,8 @@
 .message-avatar {
   width: 40px;
   height: 40px;
-  border-radius: 9999px;
+  border-radius: 50%;
   overflow: hidden;
-  background: var(--primary-light);
 }
 
 .message-contact h2 {
@@ -211,10 +208,8 @@
 .user-avatar {
   width: 24px;
   height: 24px;
-  border-radius: 9999px;
+  border-radius: 50%;
   overflow: hidden;
-  background: var(--primary-light);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .message-input-container {
