@@ -72,15 +72,15 @@
       </div>
       
       <div class="tabs">
-        <div class="tab active">New (2)</div>
-        <div class="tab">In Progress (3)</div>
-        <div class="tab">Approved (4)</div>
-        <div class="tab">Declined (1)</div>
+        <div class="tab active" data-status="new">New (2)</div>
+        <div class="tab" data-status="in-progress">In Progress (3)</div>
+        <div class="tab" data-status="approved">Approved (4)</div>
+        <div class="tab" data-status="declined">Declined (1)</div>
       </div>
       
       <div class="applications-container">
         <!-- Application Card 1 -->
-        <div class="application-card">
+        <div class="application-card" data-status="new">
           <div class="application-header">
             <h3 class="property-name">33 Bedford Street</h3>
             <div class="application-status new">New</div>
@@ -116,7 +116,7 @@
         </div>
         
         <!-- Application Card 2 -->
-        <div class="application-card">
+        <div class="application-card" data-status="new">
           <div class="application-header">
             <h3 class="property-name">78 George Street</h3>
             <div class="application-status new">New</div>
@@ -150,7 +150,144 @@
             <button class="schedule-btn">Schedule Interview</button>
           </div>
         </div>
+        
+        <!-- Application Card 3 (In Progress) -->
+        <div class="application-card" data-status="in-progress">
+          <div class="application-header">
+            <h3 class="property-name">123 Castle Street</h3>
+            <div class="application-status in-progress">In Progress</div>
+          </div>
+          
+          <div class="applicants">
+            <div class="primary-applicant">
+              <div class="applicant-avatar">
+                <div class="avatar-placeholder">TS</div>
+              </div>
+              <div class="applicant-info">
+                <h4>Tom Smith</h4>
+                <p>+ 2 others</p>
+              </div>
+            </div>
+            
+            <div class="application-meta">
+              <div class="meta-item">
+                <div class="meta-icon document-icon"></div>
+                <span>3 tenants</span>
+              </div>
+              <div class="meta-item">
+                <div class="meta-icon calendar-small-icon"></div>
+                <span>Interview scheduled</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="application-actions">
+            <button class="review-btn">Review Application</button>
+            <button class="schedule-btn">Reschedule Interview</button>
+          </div>
+        </div>
+        
+        <!-- Application Card 4 (Approved) -->
+        <div class="application-card" data-status="approved">
+          <div class="application-header">
+            <h3 class="property-name">45 Dundas Street</h3>
+            <div class="application-status approved">Approved</div>
+          </div>
+          
+          <div class="applicants">
+            <div class="primary-applicant">
+              <div class="applicant-avatar">
+                <div class="avatar-placeholder">LW</div>
+              </div>
+              <div class="applicant-info">
+                <h4>Lucy Wilson</h4>
+                <p>+ 4 others</p>
+              </div>
+            </div>
+            
+            <div class="application-meta">
+              <div class="meta-item">
+                <div class="meta-icon document-icon"></div>
+                <span>5 tenants</span>
+              </div>
+              <div class="meta-item">
+                <div class="meta-icon calendar-small-icon"></div>
+                <span>Move in: July 1st</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="application-actions">
+            <button class="review-btn">View Details</button>
+          </div>
+        </div>
+        
+        <!-- Application Card 5 (Declined) -->
+        <div class="application-card" data-status="declined">
+          <div class="application-header">
+            <h3 class="property-name">89 George Street</h3>
+            <div class="application-status declined">Declined</div>
+          </div>
+          
+          <div class="applicants">
+            <div class="primary-applicant">
+              <div class="applicant-avatar">
+                <div class="avatar-placeholder">RB</div>
+              </div>
+              <div class="applicant-info">
+                <h4>Ryan Brown</h4>
+                <p>+ 1 other</p>
+              </div>
+            </div>
+            
+            <div class="application-meta">
+              <div class="meta-item">
+                <div class="meta-icon document-icon"></div>
+                <span>2 tenants</span>
+              </div>
+              <div class="meta-item">
+                <div class="meta-icon calendar-small-icon"></div>
+                <span>Declined 3 days ago</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="application-actions">
+            <button class="review-btn">View Details</button>
+          </div>
+        </div>
       </div>
+      
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const tabs = document.querySelectorAll('.tab');
+          const applications = document.querySelectorAll('.application-card');
+          
+          function showApplications(status) {
+            applications.forEach(app => {
+              if (app.dataset.status === status) {
+                app.style.display = 'block';
+              } else {
+                app.style.display = 'none';
+              }
+            });
+          }
+          
+          tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+              // Remove active class from all tabs
+              tabs.forEach(t => t.classList.remove('active'));
+              // Add active class to clicked tab
+              tab.classList.add('active');
+              // Show applications for selected status
+              showApplications(tab.dataset.status);
+            });
+          });
+          
+          // Show initial applications (new)
+          showApplications('new');
+        });
+      </script>
     </main>
   </div>
 </body>
