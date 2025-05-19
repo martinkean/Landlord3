@@ -208,6 +208,65 @@
         </div>
       </div>
     </main>
+
+<!-- Schedule Event Popup -->
+<div class="popup-overlay"></div>
+<div class="schedule-popup">
+  <div class="popup-header">
+    <h2>Schedule New Event</h2>
+    <button class="close-popup">&times;</button>
+  </div>
+  <form class="schedule-form">
+    <div class="form-group">
+      <label for="event-title">Event Title</label>
+      <input type="text" id="event-title" required>
+    </div>
+    <div class="form-group">
+      <label for="event-date">Date</label>
+      <input type="date" id="event-date" required>
+    </div>
+    <div class="form-group">
+      <label for="event-time">Time</label>
+      <input type="time" id="event-time" required>
+    </div>
+    <div class="form-group">
+      <label for="event-type">Event Type</label>
+      <select id="event-type" required>
+        <option value="inspection">Property Inspection</option>
+        <option value="viewing">Property Viewing</option>
+        <option value="interview">Tenant Interview</option>
+        <option value="maintenance">Maintenance</option>
+      </select>
+    </div>
+    <button type="submit" class="submit-btn">Schedule Event</button>
+  </form>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const scheduleBtn = document.querySelector('.schedule-btn');
+    const popup = document.querySelector('.schedule-popup');
+    const overlay = document.querySelector('.popup-overlay');
+    const closeBtn = document.querySelector('.close-popup');
+    const scheduleForm = document.querySelector('.schedule-form');
+
+    const togglePopup = () => {
+      popup.classList.toggle('active');
+      overlay.classList.toggle('active');
+    };
+
+    scheduleBtn.addEventListener('click', togglePopup);
+    closeBtn.addEventListener('click', togglePopup);
+    overlay.addEventListener('click', togglePopup);
+
+    scheduleForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Here you would typically handle the form submission
+      // For now, we'll just close the popup
+      togglePopup();
+    });
+  });
+</script>
   </div>
 </body>
 </html>
