@@ -1,9 +1,20 @@
+/* Header Styles */
+.page-header {
+  position: sticky;
+  top: 0;
+  background-color: var(--off-white);
+  padding: var(--space-lg) 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--light-gray);
+}
+
 /* Analytics Styles */
 .analytics-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-lg);
   animation: fadeIn 0.5s ease;
+  padding-top: var(--space-xl);
 }
 
 .analytics-card {
