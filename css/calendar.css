@@ -13,10 +13,14 @@
   background-color: var(--primary-dark);
 }
 
+.page-header {
+  margin-bottom: 0;
+}
+
 .calendar-container {
   display: flex;
   gap: var(--space-xl);
-  margin-top: var(--space-lg);
+  margin-top: var(--space-xl);
 }
 
 .calendar-view {

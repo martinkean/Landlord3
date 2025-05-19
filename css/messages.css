@@ -1,4 +1,8 @@
 /* Messages Styles */
+.page-header {
+  margin-bottom: 0;
+}
+
 .messages-container {
   display: flex;
   height: 70vh;
@@ -7,6 +11,7 @@
   overflow: hidden;
   box-shadow: var(--shadow-md);
   animation: fadeIn 0.5s ease;
+  margin-top: var(--space-xl);
 }
 
 /* Conversations List */
