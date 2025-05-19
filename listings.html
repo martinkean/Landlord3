@@ -8,6 +8,37 @@
   <link rel="stylesheet" href="css/sidebar.css">
   <link rel="stylesheet" href="css/listings.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggles = document.querySelectorAll('.publish-toggle input');
+      
+      toggles.forEach(toggle => {
+        toggle.addEventListener('change', (e) => {
+          const card = e.target.closest('.property-card');
+          const status = card.querySelector('.property-status');
+          
+          if (e.target.checked) {
+            status.classList.remove('unpublished');
+            status.classList.add('published');
+            status.textContent = 'Published';
+          } else {
+            status.classList.remove('published');
+            status.classList.add('unpublished');
+            status.textContent = 'Unpublished';
+          }
+        });
+        
+        // Initialize status on load
+        const card = toggle.closest('.property-card');
+        const status = card.querySelector('.property-status');
+        if (!toggle.checked) {
+          status.classList.remove('published');
+          status.classList.add('unpublished');
+          status.textContent = 'Unpublished';
+        }
+      });
+    });
+  </script>
 </head>
 <body>
   <div class="app-container">

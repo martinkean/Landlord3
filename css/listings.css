@@ -60,7 +60,7 @@
 }
 
 .property-status.unpublished {
-  background-color: var(--medium-gray);
+  background-color: var(--dark-gray);
 }
 
 .property-image {
@@ -208,6 +208,10 @@
 
 input:checked + .slider {
   background-color: var(--primary);
+}
+
+input:not(:checked) + .slider {
+  background-color: var(--medium-gray);
 }
 
 input:checked + .slider:before {
