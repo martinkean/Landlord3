@@ -118,22 +118,18 @@
 }
 
 .day.event {
-  background-color: var(--primary-light);
-  color: var(--primary-dark);
-  font-weight: 600;
   position: relative;
 }
 
 .day.event::after {
   content: '';
   position: absolute;
-  bottom: 4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: var(--primary);
+  top: 4px;
+  right: 4px;
+  width: 6px;
+  height: 6px;
+  background-color: var(--primary-dark);
+  border-radius: 100%;
 }
 
 .day.empty {
