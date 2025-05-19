@@ -10,41 +10,6 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Image scroll functionality
-      const imageScrolls = document.querySelectorAll('.image-scroll');
-      
-      imageScrolls.forEach(scroll => {
-        const images = scroll.querySelectorAll('img');
-        const prevBtn = scroll.parentElement.querySelector('.scroll-btn.prev');
-        const nextBtn = scroll.parentElement.querySelector('.scroll-btn.next');
-        const indicators = scroll.parentElement.querySelectorAll('.indicator');
-        let currentIndex = 0;
-        
-        function updateScroll() {
-          scroll.style.transform = `translateX(-${currentIndex * 100}%)`;
-          indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === currentIndex);
-          });
-        }
-        
-        prevBtn.addEventListener('click', () => {
-          currentIndex = (currentIndex - 1 + images.length) % images.length;
-          updateScroll();
-        });
-        
-        nextBtn.addEventListener('click', () => {
-          currentIndex = (currentIndex + 1) % images.length;
-          updateScroll();
-        });
-        
-        indicators.forEach((indicator, index) => {
-          indicator.addEventListener('click', () => {
-            currentIndex = index;
-            updateScroll();
-          });
-        });
-      });
-      
       const toggles = document.querySelectorAll('.publish-toggle input');
       
       toggles.forEach(toggle => {
@@ -145,22 +110,7 @@
         <!-- Property Listing 1 -->
         <div class="property-card">
           <div class="property-status published">Published</div>
-          <div class="property-image">
-            <div class="image-scroll">
-              <img src="https://images.pexels.com/photos/206172/pexels-photo-206172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Property image 1">
-              <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Property image 2">
-              <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Property image 3">
-            </div>
-            <div class="scroll-controls">
-              <button class="scroll-btn prev">‹</button>
-              <button class="scroll-btn next">›</button>
-            </div>
-            <div class="image-indicators">
-              <div class="indicator active"></div>
-              <div class="indicator"></div>
-              <div class="indicator"></div>
-            </div>
-          </div>
+          <div class="property-image" style="background-image: url('https://images.pexels.com/photos/206172/pexels-photo-206172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')"></div>
           <div class="property-details">
             <h3 class="property-address">35 Queen Street, North Dunedin</h3>
             <p class="property-price">$1,250/wk</p>
