@@ -559,11 +559,12 @@ input:checked + .slider:before {
   transform: translate(-50%, -50%);
   background-color: var(--white);
   border-radius: var(--radius-lg);
-  width: 400px;
+  width: min(90vw, 500px);
   max-height: 90vh;
   overflow-y: auto;
   z-index: 100;
   box-shadow: var(--shadow-lg);
+  animation: slideInUp 0.3s ease;
 }
 
 .preview-popup.active {
@@ -592,14 +593,16 @@ input:checked + .slider:before {
 
 .preview-images {
   position: relative;
+  background-color: var(--off-white);
 }
 
 .image-carousel {
   position: relative;
-  height: 300px;
+  aspect-ratio: 4/3;
   background-color: var(--off-white);
   display: flex;
   align-items: center;
+  overflow: hidden;
 }
 
 .carousel-container {
@@ -632,21 +635,23 @@ input:checked + .slider:before {
 .carousel-btn {
   background: rgba(255, 255, 255, 0.9);
   border: none;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   cursor: pointer;
-  margin: 0 var(--space-md);
+  margin: 0 var(--space-sm);
   z-index: 2;
   transition: background-color 0.2s ease;
+  box-shadow: var(--shadow-md);
 }
 
 .carousel-btn:hover {
   background: var(--white);
+  box-shadow: var(--shadow-lg);
 }
 
 .image-dots {
@@ -663,9 +668,10 @@ input:checked + .slider:before {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
   transition: background-color 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .dot:hover {
@@ -674,16 +680,20 @@ input:checked + .slider:before {
 
 .dot.active {
   background-color: var(--white);
+  transform: scale(1.2);
 }
 
 .preview-details {
   padding: var(--space-lg);
+  background: linear-gradient(to bottom, var(--white) 0%, var(--off-white) 100%);
 }
 
 .preview-address {
   font-size: var(--font-size-lg);
   font-weight: 600;
   margin-bottom: var(--space-xs);
+  color: var(--text);
+  line-height: 1.3;
 }
 
 .preview-price {
@@ -691,9 +701,16 @@ input:checked + .slider:before {
   font-weight: 600;
   color: var(--primary);
   margin-bottom: var(--space-md);
+  display: inline-block;
+  padding: var(--space-xs) var(--space-sm);
+  background-color: var(--primary-light);
+  border-radius: var(--radius-md);
 }
 
 .preview-features {
   display: flex;
   gap: var(--space-md);
+  justify-content: space-between;
+  padding: var(--space-md) 0;
+  border-top: 1px solid var(--light-gray);
 }
