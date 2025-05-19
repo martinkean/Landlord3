@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar - Flat Finder Landlord</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/calendar.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="house-icon">
+            <div class="roof"></div>
+            <div class="base"></div>
+          </div>
+          <h1>FLAT FINDER LANDLORD</h1>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item">
+          <div class="nav-icon dashboard-icon"></div>
+          <span>Dashboard</span>
+        </a>
+        <a href="listings.html" class="nav-item">
+          <div class="nav-icon listings-icon"></div>
+          <span>Listings</span>
+        </a>
+        <a href="applications.html" class="nav-item">
+          <div class="nav-icon applications-icon"></div>
+          <span>Applications</span>
+        </a>
+        <a href="calendar.html" class="nav-item active">
+          <div class="nav-icon calendar-icon"></div>
+          <span>Calendar</span>
+        </a>
+        <a href="messages.html" class="nav-item">
+          <div class="nav-icon messages-icon"></div>
+          <span>Messages</span>
+        </a>
+        <a href="analytics.html" class="nav-item">
+          <div class="nav-icon analytics-icon"></div>
+          <span>Analytics</span>
+        </a>
+        <a href="#" class="nav-item logout">
+          <div class="nav-icon logout-icon"></div>
+          <span>Log out</span>
+        </a>
+      </nav>
+      
+      <div class="user-profile">
+        <div class="avatar">
+          <div class="avatar-placeholder">AJ</div>
+        </div>
+        <div class="user-info">
+          <h3 class="user-name">Andrew James</h3>
+          <p class="user-email">AJ@cutlers.co.nz</p>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title">Calendar</h1>
+        <button class="schedule-btn">Schedule Event</button>
+      </div>
+      
+      <div class="calendar-container">
+        <div class="calendar-view">
+          <div class="calendar-header">
+            <div class="month-selector">
+              <span class="month">June 2024</span>
+              <div class="month-arrows">
+                <div class="arrow prev">&#10094;</div>
+                <div class="arrow next">&#10095;</div>
+              </div>
+            </div>
+            <div class="weekdays">
+              <div class="weekday">SUN</div>
+              <div class="weekday">MON</div>
+              <div class="weekday">TUE</div>
+              <div class="weekday">WED</div>
+              <div class="weekday">THU</div>
+              <div class="weekday">FRI</div>
+              <div class="weekday">SAT</div>
+            </div>
+          </div>
+          <div class="days-grid">
+            <div class="day empty"></div>
+            <div class="day">2</div>
+            <div class="day">3</div>
+            <div class="day">4</div>
+            <div class="day">5</div>
+            <div class="day">6</div>
+            <div class="day">7</div>
+            <div class="day">8</div>
+            <div class="day">9</div>
+            <div class="day current">10</div>
+            <div class="day">11</div>
+            <div class="day">12</div>
+            <div class="day">13</div>
+            <div class="day">14</div>
+            <div class="day">15</div>
+            <div class="day">16</div>
+            <div class="day">17</div>
+            <div class="day">18</div>
+            <div class="day">19</div>
+            <div class="day">20</div>
+            <div class="day">21</div>
+            <div class="day">22</div>
+            <div class="day">23</div>
+            <div class="day">24</div>
+            <div class="day">25</div>
+            <div class="day event">26</div>
+            <div class="day">27</div>
+            <div class="day">28</div>
+            <div class="day">29</div>
+            <div class="day">30</div>
+          </div>
+          <div class="time-selector">
+            <div class="time-label">Ends</div>
+            <div class="time-value">8:00 AM</div>
+          </div>
+        </div>
+        
+        <div class="daily-schedule">
+          <h2>Schedule for June 26th, 2025</h2>
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Flat inspection at 33 Bedford Street</td>
+                <td>13:00 pm</td>
+              </tr>
+              <tr>
+                <td>Pre tenant inspection at 123 North Rd</td>
+                <td>14:30 pm</td>
+              </tr>
+              <tr>
+                <td>Tenant interview for 78 George Street</td>
+                <td>16:00 pm</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

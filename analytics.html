@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics - Flat Finder Landlord</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/analytics.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="house-icon">
+            <div class="roof"></div>
+            <div class="base"></div>
+          </div>
+          <h1>FLAT FINDER LANDLORD</h1>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item">
+          <div class="nav-icon dashboard-icon"></div>
+          <span>Dashboard</span>
+        </a>
+        <a href="listings.html" class="nav-item">
+          <div class="nav-icon listings-icon"></div>
+          <span>Listings</span>
+        </a>
+        <a href="applications.html" class="nav-item">
+          <div class="nav-icon applications-icon"></div>
+          <span>Applications</span>
+        </a>
+        <a href="calendar.html" class="nav-item">
+          <div class="nav-icon calendar-icon"></div>
+          <span>Calendar</span>
+        </a>
+        <a href="messages.html" class="nav-item">
+          <div class="nav-icon messages-icon"></div>
+          <span>Messages</span>
+        </a>
+        <a href="analytics.html" class="nav-item active">
+          <div class="nav-icon analytics-icon"></div>
+          <span>Analytics</span>
+        </a>
+        <a href="#" class="nav-item logout">
+          <div class="nav-icon logout-icon"></div>
+          <span>Log out</span>
+        </a>
+      </nav>
+      
+      <div class="user-profile">
+        <div class="avatar">
+          <div class="avatar-placeholder">AJ</div>
+        </div>
+        <div class="user-info">
+          <h3 class="user-name">Andrew James</h3>
+          <p class="user-email">AJ@cutlers.co.nz</p>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <h1 class="page-title">Analytics</h1>
+      
+      <div class="analytics-grid">
+        <!-- Stats Cards Row 1 -->
+        <div class="analytics-card">
+          <h2>Total Swipe</h2>
+          <div class="analytics-number">36</div>
+          <p class="analytics-description">Across all listings</p>
+        </div>
+        
+        <div class="analytics-card">
+          <h2>Interested (Swiped Right)</h2>
+          <div class="analytics-number">20</div>
+          <p class="analytics-description">Total "Interested" actions</p>
+        </div>
+        
+        <!-- Stats Cards Row 2 -->
+        <div class="analytics-card">
+          <h2>Passed (Swiped Left)</h2>
+          <div class="analytics-number">16</div>
+          <p class="analytics-description">Total "Passed" Actions</p>
+        </div>
+        
+        <div class="analytics-card">
+          <h2>Overall Interest Rate</h2>
+          <div class="analytics-number">56%</div>
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+        </div>
+        
+        <!-- Charts -->
+        <div class="chart-card wide">
+          <h2>Market Rent Demand</h2>
+          <p class="chart-description">Distribution of rent prices for listings users are interested in</p>
+          <div class="chart rent-chart">
+            <!-- Placeholder for chart (would be rendered with JavaScript in a real app) -->
+            <div class="chart-placeholder"></div>
+          </div>
+        </div>
+        
+        <div class="chart-card wide">
+          <h2>Swipe Distribution</h2>
+          <p class="chart-description">Break down of interested vs. passed swipes</p>
+          <div class="chart pie-chart">
+            <div class="pie-chart-container">
+              <div class="pie-segment interested" style="--percentage: 56%"></div>
+              <div class="pie-segment passed" style="--percentage: 44%"></div>
+            </div>
+            <div class="chart-legend">
+              <div class="legend-item">
+                <div class="legend-color passed"></div>
+                <div class="legend-text">Passed - 44%</div>
+              </div>
+              <div class="legend-item">
+                <div class="legend-color interested"></div>
+                <div class="legend-text">Interested - 56%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="chart-card wide">
+          <h2>Top Performing Listings</h2>
+          <p class="chart-description">Your listings with the highest interest rates</p>
+          <div class="chart listings-chart">
+            <!-- Placeholder for chart (would be rendered with JavaScript in a real app) -->
+            <div class="chart-placeholder"></div>
+          </div>
+        </div>
+        
+        <div class="chart-card wide">
+          <h2>Listings Needing Attention</h2>
+          <p class="chart-description">Your listings with the highest interest rates</p>
+          <div class="chart listings-chart">
+            <!-- Placeholder for chart (would be rendered with JavaScript in a real app) -->
+            <div class="chart-placeholder"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

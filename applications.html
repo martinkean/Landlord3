@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Applications - Flat Finder Landlord</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/applications.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="house-icon">
+            <div class="roof"></div>
+            <div class="base"></div>
+          </div>
+          <h1>FLAT FINDER LANDLORD</h1>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item">
+          <div class="nav-icon dashboard-icon"></div>
+          <span>Dashboard</span>
+        </a>
+        <a href="listings.html" class="nav-item">
+          <div class="nav-icon listings-icon"></div>
+          <span>Listings</span>
+        </a>
+        <a href="applications.html" class="nav-item active">
+          <div class="nav-icon applications-icon"></div>
+          <span>Applications</span>
+        </a>
+        <a href="calendar.html" class="nav-item">
+          <div class="nav-icon calendar-icon"></div>
+          <span>Calendar</span>
+        </a>
+        <a href="messages.html" class="nav-item">
+          <div class="nav-icon messages-icon"></div>
+          <span>Messages</span>
+        </a>
+        <a href="analytics.html" class="nav-item">
+          <div class="nav-icon analytics-icon"></div>
+          <span>Analytics</span>
+        </a>
+        <a href="#" class="nav-item logout">
+          <div class="nav-icon logout-icon"></div>
+          <span>Log out</span>
+        </a>
+      </nav>
+      
+      <div class="user-profile">
+        <div class="avatar">
+          <div class="avatar-placeholder">AJ</div>
+        </div>
+        <div class="user-info">
+          <h3 class="user-name">Andrew James</h3>
+          <p class="user-email">AJ@cutlers.co.nz</p>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <h1 class="page-title">Applications</h1>
+      
+      <div class="tabs">
+        <div class="tab active">New (2)</div>
+        <div class="tab">In Progress (3)</div>
+        <div class="tab">Approved (4)</div>
+        <div class="tab">Declined (1)</div>
+      </div>
+      
+      <div class="applications-container">
+        <!-- Application Card 1 -->
+        <div class="application-card">
+          <div class="application-header">
+            <h3 class="property-name">33 Bedford Street</h3>
+            <div class="application-status new">New</div>
+          </div>
+          
+          <div class="applicants">
+            <div class="primary-applicant">
+              <div class="applicant-avatar">
+                <div class="avatar-placeholder">CB</div>
+              </div>
+              <div class="applicant-info">
+                <h4>Charlie Brown</h4>
+                <p>+ 5 others</p>
+              </div>
+            </div>
+            
+            <div class="application-meta">
+              <div class="meta-item">
+                <div class="meta-icon document-icon"></div>
+                <span>6 tenants</span>
+              </div>
+              <div class="meta-item">
+                <div class="meta-icon calendar-small-icon"></div>
+                <span>Submitted 1 day ago</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="application-actions">
+            <button class="review-btn">Review Application</button>
+            <button class="schedule-btn">Schedule Interview</button>
+          </div>
+        </div>
+        
+        <!-- Application Card 2 -->
+        <div class="application-card">
+          <div class="application-header">
+            <h3 class="property-name">78 George Street</h3>
+            <div class="application-status new">New</div>
+          </div>
+          
+          <div class="applicants">
+            <div class="primary-applicant">
+              <div class="applicant-avatar">
+                <div class="avatar-placeholder">JD</div>
+              </div>
+              <div class="applicant-info">
+                <h4>Jane Dough</h4>
+                <p>+ 3 others</p>
+              </div>
+            </div>
+            
+            <div class="application-meta">
+              <div class="meta-item">
+                <div class="meta-icon document-icon"></div>
+                <span>4 tenants</span>
+              </div>
+              <div class="meta-item">
+                <div class="meta-icon calendar-small-icon"></div>
+                <span>Submitted 2 days ago</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="application-actions">
+            <button class="review-btn">Review Application</button>
+            <button class="schedule-btn">Schedule Interview</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

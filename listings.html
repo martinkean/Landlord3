@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Listings - Flat Finder Landlord</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/listings.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="house-icon">
+            <div class="roof"></div>
+            <div class="base"></div>
+          </div>
+          <h1>FLAT FINDER LANDLORD</h1>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item">
+          <div class="nav-icon dashboard-icon"></div>
+          <span>Dashboard</span>
+        </a>
+        <a href="listings.html" class="nav-item active">
+          <div class="nav-icon listings-icon"></div>
+          <span>Listings</span>
+        </a>
+        <a href="applications.html" class="nav-item">
+          <div class="nav-icon applications-icon"></div>
+          <span>Applications</span>
+        </a>
+        <a href="calendar.html" class="nav-item">
+          <div class="nav-icon calendar-icon"></div>
+          <span>Calendar</span>
+        </a>
+        <a href="messages.html" class="nav-item">
+          <div class="nav-icon messages-icon"></div>
+          <span>Messages</span>
+        </a>
+        <a href="analytics.html" class="nav-item">
+          <div class="nav-icon analytics-icon"></div>
+          <span>Analytics</span>
+        </a>
+        <a href="#" class="nav-item logout">
+          <div class="nav-icon logout-icon"></div>
+          <span>Log out</span>
+        </a>
+      </nav>
+      
+      <div class="user-profile">
+        <div class="avatar">
+          <div class="avatar-placeholder">AJ</div>
+        </div>
+        <div class="user-info">
+          <h3 class="user-name">Andrew James</h3>
+          <p class="user-email">AJ@cutlers.co.nz</p>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title">Property Listings</h1>
+        <button class="add-listing-btn">
+          <span class="plus-icon">+</span>
+          Add New Listing
+        </button>
+      </div>
+      
+      <div class="listings-grid">
+        <!-- Property Listing 1 -->
+        <div class="property-card">
+          <div class="property-status published">Published</div>
+          <div class="property-image" style="background-image: url('https://images.pexels.com/photos/206172/pexels-photo-206172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')"></div>
+          <div class="property-details">
+            <h3 class="property-address">35 Queen Street, North Dunedin</h3>
+            <p class="property-price">$1,250/wk</p>
+            <div class="property-features">
+              <div class="feature">
+                <div class="feature-icon bed-icon"></div>
+                <span>5 beds</span>
+              </div>
+              <div class="feature">
+                <div class="feature-icon shower-icon"></div>
+                <span>2 showers</span>
+              </div>
+              <div class="feature">
+                <div class="feature-icon car-icon"></div>
+                <span>2 car parks</span>
+              </div>
+            </div>
+            <div class="property-actions">
+              <button class="action-btn preview-btn">
+                <div class="action-icon eye-icon"></div>
+                Preview
+              </button>
+              <button class="action-btn edit-btn">
+                <div class="action-icon edit-icon"></div>
+                Edit
+              </button>
+              <div class="publish-toggle">
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider round"></span>
+                </label>
+                <span>Publish</span>
+              </div>
+            </div>
+            <button class="delete-btn">
+              <div class="action-icon trash-icon"></div>
+              Delete
+            </button>
+          </div>
+        </div>
+        
+        <!-- Property Listing 2 -->
+        <div class="property-card">
+          <div class="property-status published">Published</div>
+          <div class="property-image" style="background-image: url('https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')"></div>
+          <div class="property-details">
+            <h3 class="property-address">35 Queen Street, North Dunedin</h3>
+            <p class="property-price">$1,250/wk</p>
+            <div class="property-features">
+              <div class="feature">
+                <div class="feature-icon bed-icon"></div>
+                <span>5 beds</span>
+              </div>
+              <div class="feature">
+                <div class="feature-icon shower-icon"></div>
+                <span>2 showers</span>
+              </div>
+              <div class="feature">
+                <div class="feature-icon car-icon"></div>
+                <span>2 car parks</span>
+              </div>
+            </div>
+            <div class="property-actions">
+              <button class="action-btn preview-btn">
+                <div class="action-icon eye-icon"></div>
+                Preview
+              </button>
+              <button class="action-btn edit-btn">
+                <div class="action-icon edit-icon"></div>
+                Edit
+              </button>
+              <div class="publish-toggle">
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider round"></span>
+                </label>
+                <span>Publish</span>
+              </div>
+            </div>
+            <button class="delete-btn">
+              <div class="action-icon trash-icon"></div>
+              Delete
+            </button>
+          </div>
+        </div>
+        
+        <!-- Property Listing 3 -->
+        <div class="property-card">
+          <div class="property-status unpublished">Unpublished</div>
+          <div class="property-image" style="background-image: url('https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')"></div>
+          <div class="property-details">
+            <h3 class="property-address">35 Queen Street, North Dunedin</h3>
+            <p class="property-price">$1,250/wk</p>
+            <div class="property-features">
+              <div class="feature">
+                <div class="feature-icon bed-icon"></div>
+                <span>5 beds</span>
+              </div>
+              <div class="feature">
+                <div class="feature-icon shower-icon"></div>
+                <span>2 showers</span>
+              </div>
+              <div class="feature">
+                <div class="feature-icon car-icon"></div>
+                <span>2 car parks</span>
+              </div>
+            </div>
+            <div class="property-actions">
+              <button class="action-btn preview-btn">
+                <div class="action-icon eye-icon"></div>
+                Preview
+              </button>
+              <button class="action-btn edit-btn">
+                <div class="action-icon edit-icon"></div>
+                Edit
+              </button>
+              <div class="publish-toggle">
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+                <span>Publish</span>
+              </div>
+            </div>
+            <button class="delete-btn">
+              <div class="action-icon trash-icon"></div>
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
