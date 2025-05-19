@@ -382,6 +382,68 @@
         const approveBtns = document.querySelectorAll('.approve-btn');
         const declineBtns = document.querySelectorAll('.decline-btn');
         
+        // Add the missing populateReviewPopup function
+        function populateReviewPopup(card) {
+          // Remove active class from all cards
+          applications.forEach(app => app.classList.remove('active'));
+          // Add active class to current card
+          card.classList.add('active');
+          
+          // Populate property details
+          const propertyName = card.querySelector('.property-name').textContent;
+          reviewPopup.querySelector('.property-address').textContent = propertyName;
+          
+          // Populate applicants list
+          const applicantsList = reviewPopup.querySelector('.applicants-list');
+          applicantsList.innerHTML = ''; // Clear existing applicants
+          
+          const primaryApplicant = card.querySelector('.primary-applicant');
+          const applicantName = primaryApplicant.querySelector('h4').textContent;
+          const otherApplicants = primaryApplicant.querySelector('p').textContent;
+          
+          const applicantDiv = document.createElement('div');
+          applicantDiv.className = 'applicant';
+          applicantDiv.innerHTML = `
+            <h4>Primary Applicant: ${applicantName}</h4>
+            <p>Additional Applicants: ${otherApplicants}</p>
+          `;
+          applicantsList.appendChild(applicantDiv);
+        }
+        
+        // Add the missing populateDetailsPopup function
+        function populateDetailsPopup(card) {
+          // Remove active class from all cards
+          applications.forEach(app => app.classList.remove('active'));
+          // Add active class to current card
+          card.classList.add('active');
+          
+          // Populate property details
+          const propertyName = card.querySelector('.property-name').textContent;
+          detailsPopup.querySelector('.property-address').textContent = propertyName;
+          
+          // Set status information
+          const status = card.querySelector('.application-status').textContent;
+          const statusLabel = detailsPopup.querySelector('.status-label');
+          statusLabel.textContent = status;
+          statusLabel.className = `status-label ${status.toLowerCase()}`;
+          
+          // Populate applicants list
+          const applicantsList = detailsPopup.querySelector('.applicants-list');
+          applicantsList.innerHTML = ''; // Clear existing applicants
+          
+          const primaryApplicant = card.querySelector('.primary-applicant');
+          const applicantName = primaryApplicant.querySelector('h4').textContent;
+          const otherApplicants = primaryApplicant.querySelector('p').textContent;
+          
+          const applicantDiv = document.createElement('div');
+          applicantDiv.className = 'applicant';
+          applicantDiv.innerHTML = `
+            <h4>Primary Applicant: ${applicantName}</h4>
+            <p>Additional Applicants: ${otherApplicants}</p>
+          `;
+          applicantsList.appendChild(applicantDiv);
+        }
+
         function showApplications(status) {
           applications.forEach(app => {
             if (app.dataset.status === status) {
@@ -394,19 +456,14 @@
         
         tabs.forEach(tab => {
           tab.addEventListener('click', () => {
-            // Remove active class from all tabs
             tabs.forEach(t => t.classList.remove('active'));
-            // Add active class to clicked tab
             tab.classList.add('active');
-            // Show applications for selected status
             showApplications(tab.dataset.status);
           });
         });
         
-        // Show initial applications (new)
         showApplications('new');
         
-        // Initialize datetime picker
         flatpickr(".datetime-picker", {
           enableTime: true,
           dateFormat: "Y-m-d H:i",
@@ -414,7 +471,6 @@
           time_24hr: true
         });
         
-        // Popup handling functions
         function openPopup(popup, overlay) {
           popup.classList.add('active');
           overlay.classList.add('active');
@@ -434,19 +490,16 @@
           });
         }
         
-        // Handle Review Application button clicks
         reviewBtns.forEach(btn => {
           btn.addEventListener('click', () => {
             const card = btn.closest('.application-card');
             const status = card.dataset.status;
             
             if (status === 'approved' || status === 'declined') {
-              // Show details popup for approved/declined applications
               const detailsOverlay = document.querySelector('.details-overlay');
               populateDetailsPopup(card);
               openPopup(detailsPopup, detailsOverlay);
             } else {
-              // Show review popup for new/in-progress applications
               const reviewOverlay = document.querySelector('.review-overlay');
               populateReviewPopup(card);
               openPopup(reviewPopup, reviewOverlay);
@@ -454,7 +507,6 @@
           });
         });
         
-        // Handle Schedule Interview button clicks
         scheduleBtns.forEach(btn => {
           btn.addEventListener('click', () => {
             const scheduleOverlay = document.querySelector('.schedule-overlay');
@@ -462,7 +514,6 @@
           });
         });
         
-        // Close popups when clicking close button or overlay
         closeButtons.forEach(btn => {
           btn.addEventListener('click', () => {
             closeAllPopups();
@@ -475,10 +526,8 @@
           });
         });
         
-        // Handle form submissions
         document.querySelector('.schedule-form').addEventListener('submit', (e) => {
           e.preventDefault();
-          // Here you would typically handle the interview scheduling
           const card = document.querySelector('.application-card[data-status="new"]');
           card.dataset.status = 'in-progress';
           card.querySelector('.application-status').className = 'application-status in-progress';
@@ -488,7 +537,6 @@
           document.querySelector('[data-status="in-progress"]').click();
         });
         
-        // Handle approve/decline buttons
         approveBtns.forEach(btn => {
           btn.addEventListener('click', () => {
             const card = document.querySelector('.application-card.active');
