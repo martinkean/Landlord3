@@ -8,6 +8,83 @@
   <link rel="stylesheet" href="css/sidebar.css">
   <link rel="stylesheet" href="css/messages.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const conversations = document.querySelectorAll('.conversation-item');
+      const messagesThread = document.querySelector('.messages-thread');
+      const messageInput = document.querySelector('.message-input');
+      const sendButton = document.querySelector('.send-button');
+      const searchInput = document.querySelector('.search-input');
+
+      // Switch active conversation
+      conversations.forEach(conversation => {
+        conversation.addEventListener('click', () => {
+          // Remove active class from all conversations
+          conversations.forEach(c => c.classList.remove('active'));
+          // Add active class to clicked conversation
+          conversation.classList.add('active');
+          
+          // Update header with conversation details
+          const name = conversation.querySelector('.conversation-name').textContent;
+          const avatar = conversation.querySelector('.avatar-placeholder').textContent;
+          const avatarColor = conversation.querySelector('.avatar-placeholder').classList[1];
+          
+          document.querySelector('.message-header .avatar-placeholder').textContent = avatar;
+          document.querySelector('.message-header .avatar-placeholder').className = `avatar-placeholder ${avatarColor}`;
+          document.querySelector('.message-contact h2').textContent = name;
+        });
+      });
+
+      // Send message function
+      function sendMessage(text) {
+        const now = new Date();
+        const time = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        
+        const messageHTML = `
+          <div class="message">
+            <div class="message-content">
+              <p>${text}</p>
+            </div>
+            <div class="message-time">${time}</div>
+            <div class="user-avatar">
+              <div class="avatar-placeholder small">AJ</div>
+            </div>
+          </div>
+        `;
+        
+        messagesThread.insertAdjacentHTML('beforeend', messageHTML);
+        messagesThread.scrollTop = messagesThread.scrollHeight;
+      }
+
+      // Handle message sending
+      function handleSend() {
+        const text = messageInput.value.trim();
+        if (text) {
+          sendMessage(text);
+          messageInput.value = '';
+        }
+      }
+
+      sendButton.addEventListener('click', handleSend);
+      messageInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          handleSend();
+        }
+      });
+
+      // Search conversations
+      searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        conversations.forEach(conversation => {
+          const name = conversation.querySelector('.conversation-name').textContent.toLowerCase();
+          const message = conversation.querySelector('.conversation-last-message').textContent.toLowerCase();
+          const matches = name.includes(searchTerm) || message.includes(searchTerm);
+          conversation.style.display = matches ? 'flex' : 'none';
+        });
+      });
+    });
+  </script>
 </head>
 <body>
   <div class="app-container">
@@ -143,7 +220,7 @@
           </div>
           
           <div class="message-input-container">
-            <input type="text" class="message-input" placeholder="Type your message...">
+            <input type="text" class="message-input" placeholder="Type your message and press Enter...">
             <button class="send-button">
               <div class="send-icon"></div>
             </button>
