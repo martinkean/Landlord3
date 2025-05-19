@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="css/sidebar.css">
   <link rel="stylesheet" href="css/applications.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
   <div class="app-container">
@@ -257,38 +259,261 @@
           </div>
         </div>
       </div>
-      
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          const tabs = document.querySelectorAll('.tab');
-          const applications = document.querySelectorAll('.application-card');
-          
-          function showApplications(status) {
-            applications.forEach(app => {
-              if (app.dataset.status === status) {
-                app.style.display = 'block';
-              } else {
-                app.style.display = 'none';
-              }
-            });
-          }
-          
-          tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-              // Remove active class from all tabs
-              tabs.forEach(t => t.classList.remove('active'));
-              // Add active class to clicked tab
-              tab.classList.add('active');
-              // Show applications for selected status
-              showApplications(tab.dataset.status);
-            });
-          });
-          
-          // Show initial applications (new)
-          showApplications('new');
-        });
-      </script>
     </main>
+    
+    <!-- Review Application Popup -->
+    <div class="popup-overlay review-overlay"></div>
+    <div class="popup review-popup">
+      <div class="popup-header">
+        <h2>Review Application</h2>
+        <button class="close-popup">&times;</button>
+      </div>
+      <div class="popup-content">
+        <div class="application-details">
+          <h3>Property Details</h3>
+          <p class="property-address"></p>
+          <p class="weekly-rent">Weekly Rent: $1,250</p>
+          
+          <h3>Applicants</h3>
+          <div class="applicants-list">
+            <!-- Will be populated dynamically -->
+          </div>
+          
+          <h3>References</h3>
+          <div class="references">
+            <div class="reference">
+              <h4>Previous Landlord</h4>
+              <p>Name: John Smith</p>
+              <p>Phone: (03) 123-4567</p>
+              <p>Email: john@email.com</p>
+            </div>
+          </div>
+          
+          <div class="action-buttons">
+            <button class="approve-btn">Approve Application</button>
+            <button class="decline-btn">Decline Application</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Schedule Interview Popup -->
+    <div class="popup-overlay schedule-overlay"></div>
+    <div class="popup schedule-popup">
+      <div class="popup-header">
+        <h2>Schedule Interview</h2>
+        <button class="close-popup">&times;</button>
+      </div>
+      <div class="popup-content">
+        <form class="schedule-form">
+          <div class="form-group">
+            <label for="interview-date">Date & Time</label>
+            <input type="text" id="interview-date" class="datetime-picker" required>
+          </div>
+          <div class="form-group">
+            <label for="interview-location">Location</label>
+            <select id="interview-location" required>
+              <option value="property">At the Property</option>
+              <option value="office">At Our Office</option>
+              <option value="online">Online (Zoom)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="interview-notes">Notes</label>
+            <textarea id="interview-notes" rows="3" placeholder="Any additional information..."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Schedule Interview</button>
+        </form>
+      </div>
+    </div>
+    
+    <!-- View Details Popup -->
+    <div class="popup-overlay details-overlay"></div>
+    <div class="popup details-popup">
+      <div class="popup-header">
+        <h2>Application Details</h2>
+        <button class="close-popup">&times;</button>
+      </div>
+      <div class="popup-content">
+        <div class="application-details">
+          <div class="status-banner">
+            <span class="status-label"></span>
+            <span class="status-date"></span>
+          </div>
+          
+          <h3>Property Details</h3>
+          <p class="property-address"></p>
+          
+          <h3>Applicants</h3>
+          <div class="applicants-list">
+            <!-- Will be populated dynamically -->
+          </div>
+          
+          <h3>Application Timeline</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">June 26, 2025</div>
+              <div class="timeline-content">Application submitted</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">June 27, 2025</div>
+              <div class="timeline-content">Interview scheduled</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">June 28, 2025</div>
+              <div class="timeline-content">References checked</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const tabs = document.querySelectorAll('.tab');
+        const applications = document.querySelectorAll('.application-card');
+        const reviewBtns = document.querySelectorAll('.review-btn');
+        const scheduleBtns = document.querySelectorAll('.schedule-btn');
+        const closeButtons = document.querySelectorAll('.close-popup');
+        const overlays = document.querySelectorAll('.popup-overlay');
+        const reviewPopup = document.querySelector('.review-popup');
+        const schedulePopup = document.querySelector('.schedule-popup');
+        const detailsPopup = document.querySelector('.details-popup');
+        const approveBtns = document.querySelectorAll('.approve-btn');
+        const declineBtns = document.querySelectorAll('.decline-btn');
+        
+        function showApplications(status) {
+          applications.forEach(app => {
+            if (app.dataset.status === status) {
+              app.style.display = 'block';
+            } else {
+              app.style.display = 'none';
+            }
+          });
+        }
+        
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+            // Add active class to clicked tab
+            tab.classList.add('active');
+            // Show applications for selected status
+            showApplications(tab.dataset.status);
+          });
+        });
+        
+        // Show initial applications (new)
+        showApplications('new');
+        
+        // Initialize datetime picker
+        flatpickr(".datetime-picker", {
+          enableTime: true,
+          dateFormat: "Y-m-d H:i",
+          minDate: "today",
+          time_24hr: true
+        });
+        
+        // Popup handling functions
+        function openPopup(popup, overlay) {
+          popup.classList.add('active');
+          overlay.classList.add('active');
+        }
+        
+        function closePopup(popup, overlay) {
+          popup.classList.remove('active');
+          overlay.classList.remove('active');
+        }
+        
+        function closeAllPopups() {
+          document.querySelectorAll('.popup').forEach(popup => {
+            popup.classList.remove('active');
+          });
+          document.querySelectorAll('.popup-overlay').forEach(overlay => {
+            overlay.classList.remove('active');
+          });
+        }
+        
+        // Handle Review Application button clicks
+        reviewBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const card = btn.closest('.application-card');
+            const status = card.dataset.status;
+            
+            if (status === 'approved' || status === 'declined') {
+              // Show details popup for approved/declined applications
+              const detailsOverlay = document.querySelector('.details-overlay');
+              populateDetailsPopup(card);
+              openPopup(detailsPopup, detailsOverlay);
+            } else {
+              // Show review popup for new/in-progress applications
+              const reviewOverlay = document.querySelector('.review-overlay');
+              populateReviewPopup(card);
+              openPopup(reviewPopup, reviewOverlay);
+            }
+          });
+        });
+        
+        // Handle Schedule Interview button clicks
+        scheduleBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const scheduleOverlay = document.querySelector('.schedule-overlay');
+            openPopup(schedulePopup, scheduleOverlay);
+          });
+        });
+        
+        // Close popups when clicking close button or overlay
+        closeButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            closeAllPopups();
+          });
+        });
+        
+        overlays.forEach(overlay => {
+          overlay.addEventListener('click', () => {
+            closeAllPopups();
+          });
+        });
+        
+        // Handle form submissions
+        document.querySelector('.schedule-form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          // Here you would typically handle the interview scheduling
+          const card = document.querySelector('.application-card[data-status="new"]');
+          card.dataset.status = 'in-progress';
+          card.querySelector('.application-status').className = 'application-status in-progress';
+          card.querySelector('.application-status').textContent = 'In Progress';
+          closeAllPopups();
+          showApplications('in-progress');
+          document.querySelector('[data-status="in-progress"]').click();
+        });
+        
+        // Handle approve/decline buttons
+        approveBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const card = document.querySelector('.application-card.active');
+            card.dataset.status = 'approved';
+            card.querySelector('.application-status').className = 'application-status approved';
+            card.querySelector('.application-status').textContent = 'Approved';
+            closeAllPopups();
+            showApplications('approved');
+            document.querySelector('[data-status="approved"]').click();
+          });
+        });
+        
+        declineBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const card = document.querySelector('.application-card.active');
+            card.dataset.status = 'declined';
+            card.querySelector('.application-status').className = 'application-status declined';
+            card.querySelector('.application-status').textContent = 'Declined';
+            closeAllPopups();
+            showApplications('declined');
+            document.querySelector('[data-status="declined"]').click();
+          });
+        });
+      });
+    </script>
   </div>
 </body>
 </html>
