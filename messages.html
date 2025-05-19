@@ -15,23 +15,78 @@
       const messageInput = document.querySelector('.message-input');
       const sendButton = document.querySelector('.send-button');
       const searchInput = document.querySelector('.search-input');
+      const messagesData = {
+        'GC': {
+          messages: [
+            {
+              text: "Hey our hot water cylinder seems to be leaking and is becoming faulty. Our shower goes cold and our power bill is through the roof.\n\nAre you able to schedule a contractor please?",
+              time: "10:00 pm",
+              sender: "tenant"
+            }
+          ],
+          property: "33 Bedford"
+        },
+        'JK': {
+          messages: [
+            {
+              text: "Hi, I'm interested in viewing the property this weekend. Is Saturday morning possible?",
+              time: "2:30 pm",
+              sender: "tenant"
+            }
+          ],
+          property: "78 George Street"
+        },
+        'JD': {
+          messages: [
+            {
+              text: "Thanks for accepting our application! When can we come sign the lease?",
+              time: "11:45 am",
+              sender: "tenant"
+            }
+          ],
+          property: "123 Castle Street"
+        },
+        'WS': {
+          messages: [
+            {
+              text: "The inspection went well, just a few minor maintenance items to discuss.",
+              time: "9:15 am",
+              sender: "tenant"
+            }
+          ],
+          property: "45 Dundas Street"
+        }
+      };
 
       // Switch active conversation
       conversations.forEach(conversation => {
         conversation.addEventListener('click', () => {
-          // Remove active class from all conversations
           conversations.forEach(c => c.classList.remove('active'));
-          // Add active class to clicked conversation
           conversation.classList.add('active');
           
-          // Update header with conversation details
           const name = conversation.querySelector('.conversation-name').textContent;
           const avatar = conversation.querySelector('.avatar-placeholder').textContent;
           const avatarColor = conversation.querySelector('.avatar-placeholder').classList[1];
           
+          // Update conversation header
           document.querySelector('.message-header .avatar-placeholder').textContent = avatar;
           document.querySelector('.message-header .avatar-placeholder').className = `avatar-placeholder ${avatarColor}`;
-          document.querySelector('.message-contact h2').textContent = name;
+          const property = messagesData[avatar].property;
+          document.querySelector('.message-contact h2').textContent = `${name} (${property} Tenant)`;
+          
+          // Update messages thread
+          const messages = messagesData[avatar].messages;
+          messagesThread.innerHTML = messages.map(msg => `
+            <div class="message ${msg.sender}">
+              <div class="message-content">
+                <p>${msg.text}</p>
+              </div>
+              <div class="message-time">${msg.time}</div>
+              <div class="user-avatar">
+                <div class="avatar-placeholder small ${msg.sender === 'tenant' ? avatarColor : ''}">${msg.sender === 'tenant' ? avatar : 'AJ'}</div>
+              </div>
+            </div>
+          `).join('');
         });
       });
 
