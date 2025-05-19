@@ -243,6 +243,107 @@
         </div>
       </div>
     </main>
+    
+    <!-- Add Listing Popup -->
+    <div class="popup-overlay"></div>
+    <div class="add-listing-popup">
+      <div class="popup-header">
+        <h2>Add New Listing</h2>
+        <button class="close-popup">&times;</button>
+      </div>
+      <form class="listing-form">
+        <div class="form-group">
+          <label for="address">Property Address</label>
+          <input type="text" id="address" required placeholder="e.g. 35 Queen Street, North Dunedin">
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rent">Weekly Rent</label>
+            <div class="input-with-prefix">
+              <span class="prefix">$</span>
+              <input type="number" id="rent" required placeholder="e.g. 850">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="bond">Bond (weeks)</label>
+            <input type="number" id="bond" required value="4" min="1">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bedrooms">Bedrooms</label>
+            <input type="number" id="bedrooms" required min="1">
+          </div>
+          <div class="form-group">
+            <label for="bathrooms">Bathrooms</label>
+            <input type="number" id="bathrooms" required min="1">
+          </div>
+          <div class="form-group">
+            <label for="parking">Parking Spots</label>
+            <input type="number" id="parking" required min="0">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="description">Property Description</label>
+          <textarea id="description" rows="4" required placeholder="Describe the property..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="images">Property Images</label>
+          <input type="file" id="images" multiple accept="image/*">
+          <p class="help-text">Upload up to 10 images (PNG, JPG)</p>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="available-date">Available From</label>
+            <input type="date" id="available-date" required>
+          </div>
+          <div class="form-group">
+            <label for="min-term">Minimum Term (months)</label>
+            <input type="number" id="min-term" required min="6" value="12">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="publish">
+            Publish listing immediately
+          </label>
+        </div>
+        
+        <button type="submit" class="submit-btn">Create Listing</button>
+      </form>
+    </div>
   </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const addListingBtn = document.querySelector('.add-listing-btn');
+      const popup = document.querySelector('.add-listing-popup');
+      const overlay = document.querySelector('.popup-overlay');
+      const closeBtn = document.querySelector('.close-popup');
+      const listingForm = document.querySelector('.listing-form');
+
+      const togglePopup = () => {
+        popup.classList.toggle('active');
+        overlay.classList.toggle('active');
+      };
+
+      addListingBtn.addEventListener('click', togglePopup);
+      closeBtn.addEventListener('click', togglePopup);
+      overlay.addEventListener('click', togglePopup);
+
+      listingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Here you would typically handle the form submission
+        // For now, we'll just close the popup
+        togglePopup();
+      });
+    });
+  </script>
 </body>
 </html>

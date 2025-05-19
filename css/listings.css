@@ -247,3 +247,146 @@ input:checked + .slider:before {
 .delete-btn:hover {
   background-color: rgba(239, 68, 68, 0.1);
 }
+
+/* Add Listing Popup Styles */
+.add-listing-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-lg);
+  width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.add-listing-popup.active {
+  display: block;
+}
+
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.popup-overlay.active {
+  display: block;
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.popup-header h2 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+.close-popup {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+  font-size: var(--font-size-xl);
+  padding: var(--space-xs);
+  line-height: 1;
+}
+
+.listing-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-md);
+}
+
+.form-group label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  width: 100%;
+}
+
+.input-with-prefix {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.prefix {
+  position: absolute;
+  left: var(--space-md);
+  color: var(--text-light);
+}
+
+.input-with-prefix input {
+  padding-left: calc(var(--space-md) + 12px);
+}
+
+.help-text {
+  font-size: var(--font-size-xs);
+  color: var(--text-light);
+  margin-top: calc(var(--space-xs) * -1);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: auto;
+}
+
+.submit-btn {
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  margin-top: var(--space-md);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-dark);
+}
