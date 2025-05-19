@@ -8,6 +8,54 @@
   <link rel="stylesheet" href="css/sidebar.css">
   <link rel="stylesheet" href="css/calendar.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const events = {
+        '26': [
+          { title: 'Flat inspection at 33 Bedford Street', time: '13:00 pm' },
+          { title: 'Pre tenant inspection at 123 North Rd', time: '14:30 pm' },
+          { title: 'Tenant interview for 78 George Street', time: '16:00 pm' }
+        ],
+        '10': [
+          { title: 'Property viewing at 45 Castle Street', time: '10:00 am' },
+          { title: 'Maintenance check at 89 George Street', time: '14:00 pm' }
+        ],
+        '15': [
+          { title: 'Lease signing for 12 Albany Street', time: '11:30 am' }
+        ]
+      };
+
+      const days = document.querySelectorAll('.day:not(.empty)');
+      const scheduleTitle = document.querySelector('.daily-schedule h2');
+      const scheduleTable = document.querySelector('.schedule-table tbody');
+
+      days.forEach(day => {
+        // Add event class to days that have events
+        if (events[day.textContent.trim()]) {
+          day.classList.add('event');
+        }
+
+        day.addEventListener('click', () => {
+          // Remove current class from all days
+          days.forEach(d => d.classList.remove('current'));
+          // Add current class to clicked day
+          day.classList.add('current');
+
+          const dayNum = day.textContent.trim();
+          scheduleTitle.textContent = `Schedule for June ${dayNum}th, 2024`;
+
+          // Update schedule table
+          const dayEvents = events[dayNum] || [];
+          scheduleTable.innerHTML = dayEvents.map(event => `
+            <tr>
+              <td>${event.title}</td>
+              <td>${event.time}</td>
+            </tr>
+          `).join('') || '<tr><td colspan="2">No events scheduled for this day</td></tr>';
+        });
+      });
+    });
+  </script>
 </head>
 <body>
   <div class="app-container">
@@ -99,7 +147,7 @@
             <div class="day empty"></div>
             <div class="day">2</div>
             <div class="day">3</div>
-            <div class="day">4</div>
+            <div class="day event">4</div>
             <div class="day">5</div>
             <div class="day">6</div>
             <div class="day">7</div>
@@ -110,7 +158,7 @@
             <div class="day">12</div>
             <div class="day">13</div>
             <div class="day">14</div>
-            <div class="day">15</div>
+            <div class="day event">15</div>
             <div class="day">16</div>
             <div class="day">17</div>
             <div class="day">18</div>
