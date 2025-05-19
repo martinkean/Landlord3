@@ -549,3 +549,151 @@ input:checked + .slider:before {
 .remove-image-btn:hover {
   background-color: rgba(239, 68, 68, 0.1);
 }
+
+/* Preview Popup Styles */
+.preview-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: var(--shadow-lg);
+}
+
+.preview-popup.active {
+  display: block;
+}
+
+.preview-popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.preview-popup-overlay.active {
+  display: block;
+}
+
+.preview-content {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.preview-images {
+  position: relative;
+}
+
+.image-carousel {
+  position: relative;
+  height: 300px;
+  background-color: var(--off-white);
+  display: flex;
+  align-items: center;
+}
+
+.carousel-container {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  margin: 0 var(--space-md);
+  z-index: 2;
+  transition: background-color 0.2s ease;
+}
+
+.carousel-btn:hover {
+  background: var(--white);
+}
+
+.image-dots {
+  position: absolute;
+  bottom: var(--space-md);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-xs);
+  z-index: 2;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dot:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.dot.active {
+  background-color: var(--white);
+}
+
+.preview-details {
+  padding: var(--space-lg);
+}
+
+.preview-address {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.preview-price {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: var(--space-md);
+}
+
+.preview-features {
+  display: flex;
+  gap: var(--space-md);
+}

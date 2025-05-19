@@ -244,6 +244,62 @@
       </div>
     </main>
     
+    <!-- Preview Popup -->
+    <div class="preview-popup-overlay"></div>
+    <div class="preview-popup">
+      <div class="popup-header">
+        <h2>Property Preview</h2>
+        <button class="close-preview">&times;</button>
+      </div>
+      
+      <div class="preview-content">
+        <div class="preview-images">
+          <div class="image-carousel">
+            <button class="carousel-btn prev">&lt;</button>
+            <div class="carousel-container">
+              <div class="carousel-slide active">
+                <img src="https://images.pexels.com/photos/206172/pexels-photo-206172.jpeg" alt="Property exterior">
+              </div>
+              <div class="carousel-slide">
+                <img src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg" alt="Living room">
+              </div>
+              <div class="carousel-slide">
+                <img src="https://images.pexels.com/photos/3935350/pexels-photo-3935350.jpeg" alt="Kitchen">
+              </div>
+              <div class="carousel-slide">
+                <img src="https://images.pexels.com/photos/6585757/pexels-photo-6585757.jpeg" alt="Bedroom">
+              </div>
+              <div class="carousel-slide">
+                <img src="https://images.pexels.com/photos/6585598/pexels-photo-6585598.jpeg" alt="Bathroom">
+              </div>
+            </div>
+            <button class="carousel-btn next">&gt;</button>
+          </div>
+          <div class="image-dots"></div>
+        </div>
+        
+        <div class="preview-details">
+          <h3 class="preview-address"></h3>
+          <p class="preview-price"></p>
+          <div class="preview-features">
+            <div class="feature">
+              <div class="feature-icon bed-icon"></div>
+              <span></span>
+            </div>
+            <div class="feature">
+              <div class="feature-icon shower-icon"></div>
+              <span></span>
+            </div>
+            <div class="feature">
+              <div class="feature-icon car-icon"></div>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
     <!-- Edit Listing Popup -->
     <div class="edit-popup-overlay"></div>
     <div class="edit-listing-popup">
@@ -410,6 +466,88 @@
       const editPopup = document.querySelector('.edit-listing-popup');
       const editOverlay = document.querySelector('.edit-popup-overlay');
       const closeEditBtn = document.querySelector('.close-edit-popup');
+      
+      // Preview functionality
+      const previewBtns = document.querySelectorAll('.preview-btn');
+      const previewPopup = document.querySelector('.preview-popup');
+      const previewOverlay = document.querySelector('.preview-popup-overlay');
+      const closePreviewBtn = document.querySelector('.close-preview');
+      const carouselContainer = document.querySelector('.carousel-container');
+      const carouselSlides = document.querySelectorAll('.carousel-slide');
+      const prevSlideBtn = document.querySelector('.carousel-btn.prev');
+      const nextSlideBtn = document.querySelector('.carousel-btn.next');
+      const imageDots = document.querySelector('.image-dots');
+      
+      let currentSlide = 0;
+      
+      function updateCarousel() {
+        carouselSlides.forEach((slide, index) => {
+          slide.classList.toggle('active', index === currentSlide);
+        });
+        
+        // Update dots
+        const dots = imageDots.querySelectorAll('.dot');
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentSlide);
+        });
+      }
+      
+      function createDots() {
+        imageDots.innerHTML = '';
+        carouselSlides.forEach((_, index) => {
+          const dot = document.createElement('div');
+          dot.className = `dot ${index === currentSlide ? 'active' : ''}`;
+          dot.addEventListener('click', () => {
+            currentSlide = index;
+            updateCarousel();
+          });
+          imageDots.appendChild(dot);
+        });
+      }
+      
+      prevSlideBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + carouselSlides.length) % carouselSlides.length;
+        updateCarousel();
+      });
+      
+      nextSlideBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % carouselSlides.length;
+        updateCarousel();
+      });
+      
+      function togglePreviewPopup() {
+        previewPopup.classList.toggle('active');
+        previewOverlay.classList.toggle('active');
+        if (previewPopup.classList.contains('active')) {
+          createDots();
+        }
+      }
+      
+      previewBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.property-card');
+          populatePreview(card);
+          togglePreviewPopup();
+        });
+      });
+      
+      function populatePreview(card) {
+        const address = card.querySelector('.property-address').textContent;
+        const price = card.querySelector('.property-price').textContent;
+        const beds = card.querySelector('.bed-icon').nextElementSibling.textContent;
+        const baths = card.querySelector('.shower-icon').nextElementSibling.textContent;
+        const parking = card.querySelector('.car-icon').nextElementSibling.textContent;
+        
+        previewPopup.querySelector('.preview-address').textContent = address;
+        previewPopup.querySelector('.preview-price').textContent = price;
+        previewPopup.querySelector('.bed-icon').nextElementSibling.textContent = beds;
+        previewPopup.querySelector('.shower-icon').nextElementSibling.textContent = baths;
+        previewPopup.querySelector('.car-icon').nextElementSibling.textContent = parking;
+      }
+      
+      closePreviewBtn.addEventListener('click', togglePreviewPopup);
+      previewOverlay.addEventListener('click', togglePreviewPopup);
+      
       const galleryContainer = document.querySelector('.gallery-container');
       const prevBtn = document.querySelector('.scroll-btn.prev');
       const nextBtn = document.querySelector('.scroll-btn.next');
