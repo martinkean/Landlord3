@@ -6,7 +6,15 @@
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-md);
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
   transition: background-color 0.2s ease;
+}
+
+.plus-icon {
+  font-size: 1.2em;
+  line-height: 1;
 }
 
 .schedule-btn:hover {
