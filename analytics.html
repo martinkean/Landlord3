@@ -66,6 +66,37 @@
       </div>
     </aside>
     
+    <!-- Profile Edit Popup -->
+    <div class="profile-popup-overlay"></div>
+    <div class="profile-popup">
+      <div class="popup-header">
+        <h2>Edit Profile</h2>
+        <button class="close-popup">&times;</button>
+      </div>
+      <form class="profile-form">
+        <div class="profile-avatar-upload">
+          <div class="profile-avatar-preview">AJ</div>
+          <label class="upload-btn">
+            Upload Photo
+            <input type="file" accept="image/*" style="display: none;">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="profile-name">Full Name</label>
+          <input type="text" id="profile-name" value="Andrew James" required>
+        </div>
+        <div class="form-group">
+          <label for="profile-email">Email</label>
+          <input type="email" id="profile-email" value="AJ@cutlers.co.nz" required>
+        </div>
+        <div class="form-group">
+          <label for="profile-phone">Phone Number</label>
+          <input type="tel" id="profile-phone" placeholder="Enter phone number">
+        </div>
+        <button type="submit" class="submit-btn">Save Changes</button>
+      </form>
+    </div>
+
     <!-- Main Content -->
     <main class="main-content">
       <div class="page-header">
@@ -231,6 +262,39 @@
   </div>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Profile popup functionality
+      const userProfile = document.querySelector('.user-profile');
+      const profilePopup = document.querySelector('.profile-popup');
+      const profileOverlay = document.querySelector('.profile-popup-overlay');
+      const closeProfileBtn = profilePopup.querySelector('.close-popup');
+      const profileForm = document.querySelector('.profile-form');
+
+      function toggleProfilePopup() {
+        profilePopup.classList.toggle('active');
+        profileOverlay.classList.toggle('active');
+      }
+
+      userProfile.addEventListener('click', toggleProfilePopup);
+      closeProfileBtn.addEventListener('click', toggleProfilePopup);
+      profileOverlay.addEventListener('click', toggleProfilePopup);
+
+      profileForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('profile-name').value;
+        const email = document.getElementById('profile-email').value;
+        
+        // Update profile display
+        document.querySelector('.user-name').textContent = name;
+        document.querySelector('.user-email').textContent = email;
+        
+        // Update avatar initials
+        const initials = name.split(' ').map(n => n[0]).join('');
+        document.querySelector('.avatar-placeholder').textContent = initials;
+        document.querySelector('.profile-avatar-preview').textContent = initials;
+        
+        toggleProfilePopup();
+      });
+
       // Rent Demand Chart
       const ctx = document.getElementById('rentDemandChart').getContext('2d');
       Chart.defaults.font.family = "'Inter', sans-serif";
