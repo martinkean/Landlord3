@@ -79,14 +79,26 @@
 }
 
 .attention-icon {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background-color: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+.attention-icon::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-color: var(--white);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
 
 .attention-content {
   flex: 1;
