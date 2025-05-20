@@ -274,6 +274,19 @@
 </div>
 
 <script>
+  // Define toggleProfilePopup in global scope
+  function toggleProfilePopup() {
+    const profilePopup = document.querySelector('.profile-popup');
+    const profileOverlay = document.querySelector('.profile-popup-overlay');
+    
+    profilePopup.classList.toggle('active');
+    profileOverlay.classList.toggle('active');
+    
+    if (profilePopup.classList.contains('active')) {
+      document.getElementById('profile-name').focus();
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     // Profile popup functionality
     const userProfile = document.querySelector('.user-profile');
@@ -287,15 +300,6 @@
     const avatarPlaceholders = document.querySelectorAll('.avatar-placeholder');
     const userNameElements = document.querySelectorAll('.user-name');
     const userEmailElements = document.querySelectorAll('.user-email');
-
-    function toggleProfilePopup() {
-      profilePopup.classList.toggle('active');
-      profileOverlay.classList.toggle('active');
-      
-      if (profilePopup.classList.contains('active')) {
-        profileName.focus();
-      }
-    }
 
     userProfile.addEventListener('click', toggleProfilePopup);
     closeProfileBtn.addEventListener('click', toggleProfilePopup);
