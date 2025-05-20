@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/sidebar.css">
   <link rel="stylesheet" href="css/analytics.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="app-container">
@@ -104,38 +105,7 @@
         <div class="chart-card wide">
           <h2>Market Rent Demand</h2>
           <p class="chart-description">Distribution of rent prices for listings users are interested in</p>
-          <div class="rent-demand-container">
-            <div class="rent-stats">
-              <div class="rent-stat-item">
-                <h3>$200-250</h3>
-                <div class="stat-bar">
-                  <div class="stat-fill" style="width: 75%"></div>
-                </div>
-                <p>75% interest</p>
-              </div>
-              <div class="rent-stat-item">
-                <h3>$250-300</h3>
-                <div class="stat-bar">
-                  <div class="stat-fill" style="width: 60%"></div>
-                </div>
-                <p>60% interest</p>
-              </div>
-              <div class="rent-stat-item">
-                <h3>$300-350</h3>
-                <div class="stat-bar">
-                  <div class="stat-fill" style="width: 40%"></div>
-                </div>
-                <p>40% interest</p>
-              </div>
-              <div class="rent-stat-item">
-                <h3>$350+</h3>
-                <div class="stat-bar">
-                  <div class="stat-fill" style="width: 25%"></div>
-                </div>
-                <p>25% interest</p>
-              </div>
-            </div>
-          </div>
+          <canvas id="rentDemandChart"></canvas>
         </div>
         
         <div class="chart-card wide">
@@ -209,5 +179,61 @@
       </div>
     </main>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const ctx = document.getElementById('rentDemandChart').getContext('2d');
+      
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['$200', '$250', '$300', '$350', '$400'],
+          datasets: [
+            {
+              label: 'Interest Rate',
+              data: [75, 60, 40, 25, 15],
+              borderColor: '#14B8A6',
+              backgroundColor: 'rgba(20, 184, 166, 0.1)',
+              tension: 0.4,
+              fill: true,
+              pointRadius: 6,
+              pointBackgroundColor: '#14B8A6'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              title: {
+                display: true,
+                text: 'Interest Rate (%)'
+              }
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Rent per Room'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return `Interest Rate: ${context.parsed.y}%`;
+                }
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
