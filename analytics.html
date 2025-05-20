@@ -268,30 +268,49 @@
       const profileOverlay = document.querySelector('.profile-popup-overlay');
       const closeProfileBtn = profilePopup.querySelector('.close-popup');
       const profileForm = document.querySelector('.profile-form');
+      const profileName = document.getElementById('profile-name');
+      const profileEmail = document.getElementById('profile-email');
+      const profilePhone = document.getElementById('profile-phone');
+      const avatarPlaceholders = document.querySelectorAll('.avatar-placeholder');
+      const userNameElements = document.querySelectorAll('.user-name');
+      const userEmailElements = document.querySelectorAll('.user-email');
 
       function toggleProfilePopup() {
         profilePopup.classList.toggle('active');
         profileOverlay.classList.toggle('active');
+        
+        if (profilePopup.classList.contains('active')) {
+          profileName.focus();
+        }
       }
 
       userProfile.addEventListener('click', toggleProfilePopup);
       closeProfileBtn.addEventListener('click', toggleProfilePopup);
       profileOverlay.addEventListener('click', toggleProfilePopup);
 
+      function updateProfileDisplay(name, email) {
+        const initials = name.split(' ').map(n => n[0]).join('');
+        
+        // Update all instances of the profile information
+        avatarPlaceholders.forEach(placeholder => {
+          placeholder.textContent = initials;
+        });
+        
+        userNameElements.forEach(element => {
+          element.textContent = name;
+        });
+        
+        userEmailElements.forEach(element => {
+          element.textContent = email;
+        });
+      }
+
       profileForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const name = document.getElementById('profile-name').value;
-        const email = document.getElementById('profile-email').value;
+        const name = profileName.value.trim();
+        const email = profileEmail.value.trim();
         
-        // Update profile display
-        document.querySelector('.user-name').textContent = name;
-        document.querySelector('.user-email').textContent = email;
-        
-        // Update avatar initials
-        const initials = name.split(' ').map(n => n[0]).join('');
-        document.querySelector('.avatar-placeholder').textContent = initials;
-        document.querySelector('.profile-avatar-preview').textContent = initials;
-        
+        updateProfileDisplay(name, email);
         toggleProfilePopup();
       });
 

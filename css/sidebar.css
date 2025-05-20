@@ -209,6 +209,7 @@
 /* Profile Edit Popup */
 .profile-popup {
   display: none;
+  opacity: 0;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -219,14 +220,17 @@
   box-shadow: var(--shadow-lg);
   width: 400px;
   z-index: 100;
+  transition: opacity 0.2s ease;
 }
 
 .profile-popup.active {
   display: block;
+  opacity: 1;
 }
 
 .profile-popup-overlay {
   display: none;
+  opacity: 0;
   position: fixed;
   top: 0;
   left: 0;
@@ -234,10 +238,12 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 99;
+  transition: opacity 0.2s ease;
 }
 
 .profile-popup-overlay.active {
   display: block;
+  opacity: 1;
 }
 
 .profile-form {
@@ -281,6 +287,80 @@
 .upload-btn:hover {
   background-color: var(--light-gray);
   border-color: var(--text);
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.popup-header h2 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.close-popup {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.close-popup:hover {
+  color: var(--text);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.form-group label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text);
+}
+
+.form-group input {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--text);
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.submit-btn {
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: var(--space-md);
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-dark);
 }
 
 /* Responsive Styles */
