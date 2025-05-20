@@ -10,6 +10,58 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Profile popup functionality
+      const userProfile = document.querySelector('.user-profile');
+      const profilePopup = document.querySelector('.profile-popup');
+      const profileOverlay = document.querySelector('.profile-popup-overlay');
+      const closeProfileBtn = profilePopup.querySelector('.close-popup');
+      const profileForm = document.querySelector('.profile-form');
+      const profileName = document.getElementById('profile-name');
+      const profileEmail = document.getElementById('profile-email');
+      const profilePhone = document.getElementById('profile-phone');
+      const avatarPlaceholders = document.querySelectorAll('.avatar-placeholder');
+      const userNameElements = document.querySelectorAll('.user-name');
+      const userEmailElements = document.querySelectorAll('.user-email');
+
+      function toggleProfilePopup() {
+        profilePopup.classList.toggle('active');
+        profileOverlay.classList.toggle('active');
+        
+        if (profilePopup.classList.contains('active')) {
+          profileName.focus();
+        }
+      }
+
+      userProfile.addEventListener('click', toggleProfilePopup);
+      closeProfileBtn.addEventListener('click', toggleProfilePopup);
+      profileOverlay.addEventListener('click', toggleProfilePopup);
+
+      function updateProfileDisplay(name, email) {
+        const initials = name.split(' ').map(n => n[0]).join('');
+        
+        // Update all instances of the profile information
+        avatarPlaceholders.forEach(placeholder => {
+          placeholder.textContent = initials;
+        });
+        
+        userNameElements.forEach(element => {
+          element.textContent = name;
+        });
+        
+        userEmailElements.forEach(element => {
+          element.textContent = email;
+        });
+      }
+
+      profileForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = profileName.value.trim();
+        const email = profileEmail.value.trim();
+        
+        updateProfileDisplay(name, email);
+        toggleProfilePopup();
+      });
+
       const conversations = document.querySelectorAll('.conversation-item');
       const messagesThread = document.querySelector('.messages-thread');
       const messageInput = document.querySelector('.message-input');
@@ -186,7 +238,7 @@
         </a>
       </nav>
       
-      <div class="user-profile">
+      <div class="user-profile" role="button" tabindex="0">
         <div class="avatar">
           <div class="avatar-placeholder">AJ</div>
         </div>
@@ -196,6 +248,38 @@
         </div>
       </div>
     </aside>
+    
+    <!-- Profile Edit Popup -->
+    <div class="profile-popup-overlay"></div>
+    <div class="profile-popup">
+      <div class="popup-header">
+        <h2>Edit Profile</h2>
+        <button class="close-popup">&times;</button>
+      </div>
+      <form class="profile-form">
+        <div class="profile-avatar-upload">
+          <div class="profile-avatar-preview">AJ</div>
+          <label class="upload-btn">
+            Upload Photo
+            <input type="file" accept="image/*" style="display: none;">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="profile-name">Full Name</label>
+          <input type="text" id="profile-name" value="Andrew James" required>
+        </div>
+        <div class="form-group">
+          <label for="profile-email">Email</label>
+          <input type="email" id="profile-email" value="AJ@cutlers.co.nz" required>
+        </div>
+        <div class="form-group">
+          <label for="profile-phone">Phone Number</label>
+          <input type="tel" id="profile-phone" placeholder="Enter phone number">
+        </div>
+        <button type="submit" class="submit-btn">Save Changes</button>
+      </form>
+    </div>
+
     
     <!-- Main Content -->
     <main class="main-content">
