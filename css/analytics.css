@@ -88,6 +88,75 @@
   margin-bottom: var(--space-md);
 }
 
+/* Swipe Distribution */
+.swipe-distribution {
+  padding: var(--space-lg) 0;
+}
+
+.swipe-bar {
+  height: 48px;
+  background-color: var(--light-gray);
+  border-radius: var(--radius-lg);
+  display: flex;
+  overflow: hidden;
+  margin-bottom: var(--space-lg);
+}
+
+.swipe-segment {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  color: var(--white);
+  font-weight: 500;
+  transition: width 0.3s ease;
+}
+
+.swipe-segment.interested {
+  background-color: var(--success);
+}
+
+.swipe-segment.passed {
+  background-color: var(--warning);
+}
+
+.swipe-label {
+  font-size: var(--font-size-sm);
+}
+
+.swipe-percentage {
+  font-weight: 600;
+}
+
+.swipe-legend {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xl);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-light);
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.legend-color.interested {
+  background-color: var(--success);
+}
+
+.legend-color.passed {
+  background-color: var(--warning);
+}
+
 #rentDemandChart {
   width: 100%;
   margin: var(--space-md) 0;
