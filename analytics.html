@@ -111,28 +111,7 @@
         <div class="chart-card wide">
           <h2>Swipe Distribution</h2>
           <p class="chart-description">Break down of interested vs. passed swipes</p>
-          <div class="swipe-distribution">
-            <div class="swipe-bar">
-              <div class="swipe-segment interested" style="width: 55.6%">
-                <span class="swipe-label">Interested</span>
-                <span class="swipe-percentage">55.6%</span>
-              </div>
-              <div class="swipe-segment passed" style="width: 44.4%">
-                <span class="swipe-label">Passed</span>
-                <span class="swipe-percentage">44.4%</span>
-              </div>
-            </div>
-            <div class="swipe-legend">
-              <div class="legend-item">
-                <div class="legend-color interested"></div>
-                <span>Interested - 20 swipes</span>
-              </div>
-              <div class="legend-item">
-                <div class="legend-color passed"></div>
-                <span>Passed - 16 swipes</span>
-              </div>
-            </div>
-          </div>
+          <canvas id="swipeDistributionChart"></canvas>
         </div>
         
         <div class="chart-card wide">
@@ -199,30 +178,30 @@
       new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['$200', '$250', '$300', '$350'],
+          labels: ['$200', '$225', '$250', '$275', '$300', '$325', '$350', '$375', '$400'],
           datasets: [
             {
               label: 'Interest Rate',
-              data: [75, 60, 40, 25],
+              data: [75, 70, 60, 50, 40, 35, 25, 20, 15],
               borderColor: '#14B8A6',
               backgroundColor: 'rgba(20, 184, 166, 0.1)',
               tension: 0.4,
               fill: true,
-              pointRadius: 6,
+              pointRadius: 4,
               pointBackgroundColor: '#14B8A6'
             }
           ]
         },
         options: {
           responsive: true,
-          maintainAspectRatio: false,
-          aspectRatio: 2,
+          maintainAspectRatio: true,
+          aspectRatio: 2.5,
           scales: {
             y: {
               beginAtZero: true,
               max: 100,
               grid: {
-                color: 'rgba(0, 0, 0, 0.1)'
+                color: 'rgba(0, 0, 0, 0.05)'
               },
               title: {
                 display: true,
@@ -252,6 +231,65 @@
               callbacks: {
                 label: function(context) {
                   return `Interest Rate: ${context.parsed.y}%`;
+                }
+              }
+            }
+          }
+        }
+      });
+      
+      // Swipe Distribution Chart
+      const swipeCtx = document.getElementById('swipeDistributionChart').getContext('2d');
+      
+      new Chart(swipeCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Swipe Distribution'],
+          datasets: [
+            {
+              label: 'Interested',
+              data: [55.6],
+              backgroundColor: '#22C55E',
+              barPercentage: 0.8
+            },
+            {
+              label: 'Passed',
+              data: [44.4],
+              backgroundColor: '#F97316',
+              barPercentage: 0.8
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              stacked: true,
+              max: 100,
+              title: {
+                display: true,
+                text: 'Percentage (%)'
+              }
+            },
+            y: {
+              stacked: true,
+              display: false
+            }
+          },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                usePointStyle: true,
+                padding: 20
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return `${context.dataset.label}: ${context.parsed.x}%`;
                 }
               }
             }
