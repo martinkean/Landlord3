@@ -9,6 +9,20 @@
   <link rel="stylesheet" href="css/messages.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <script>
+    // Define toggleProfilePopup in global scope
+    function toggleProfilePopup() {
+      const profilePopup = document.querySelector('.profile-popup');
+      const profileOverlay = document.querySelector('.profile-popup-overlay');
+      
+      profilePopup.classList.toggle('active');
+      profileOverlay.classList.toggle('active');
+      
+      if (profilePopup.classList.contains('active')) {
+        document.getElementById('profile-name').focus();
+      }
+    }
+  </script>
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Profile popup functionality
       const userProfile = document.querySelector('.user-profile');
@@ -239,6 +253,7 @@
       </nav>
       
       <div class="user-profile" role="button" tabindex="0">
+      <div class="user-profile" role="button" tabindex="0" onclick="toggleProfilePopup()">
         <div class="avatar">
           <div class="avatar-placeholder">AJ</div>
         </div>
