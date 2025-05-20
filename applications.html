@@ -400,6 +400,19 @@
     </div>
     
     <script>
+      // Define toggleProfilePopup in global scope
+      function toggleProfilePopup() {
+        const profilePopup = document.querySelector('.profile-popup');
+        const profileOverlay = document.querySelector('.profile-popup-overlay');
+        
+        profilePopup.classList.toggle('active');
+        profileOverlay.classList.toggle('active');
+        
+        if (profilePopup.classList.contains('active')) {
+          document.getElementById('profile-name').focus();
+        }
+      }
+
       document.addEventListener('DOMContentLoaded', () => {
         // Profile popup functionality
         const userProfile = document.querySelector('.user-profile');
@@ -413,15 +426,6 @@
         const avatarPlaceholders = document.querySelectorAll('.avatar-placeholder');
         const userNameElements = document.querySelectorAll('.user-name');
         const userEmailElements = document.querySelectorAll('.user-email');
-
-        function toggleProfilePopup() {
-          profilePopup.classList.toggle('active');
-          profileOverlay.classList.toggle('active');
-          
-          if (profilePopup.classList.contains('active')) {
-            profileName.focus();
-          }
-        }
 
         userProfile.addEventListener('click', toggleProfilePopup);
         closeProfileBtn.addEventListener('click', toggleProfilePopup);
@@ -465,20 +469,15 @@
         const approveBtns = document.querySelectorAll('.approve-btn');
         const declineBtns = document.querySelectorAll('.decline-btn');
         
-        // Add the missing populateReviewPopup function
         function populateReviewPopup(card) {
-          // Remove active class from all cards
           applications.forEach(app => app.classList.remove('active'));
-          // Add active class to current card
           card.classList.add('active');
           
-          // Populate property details
           const propertyName = card.querySelector('.property-name').textContent;
           reviewPopup.querySelector('.property-address').textContent = propertyName;
           
-          // Populate applicants list
           const applicantsList = reviewPopup.querySelector('.applicants-list');
-          applicantsList.innerHTML = ''; // Clear existing applicants
+          applicantsList.innerHTML = '';
           
           const primaryApplicant = card.querySelector('.primary-applicant');
           const applicantName = primaryApplicant.querySelector('h4').textContent;
@@ -493,26 +492,20 @@
           applicantsList.appendChild(applicantDiv);
         }
         
-        // Add the missing populateDetailsPopup function
         function populateDetailsPopup(card) {
-          // Remove active class from all cards
           applications.forEach(app => app.classList.remove('active'));
-          // Add active class to current card
           card.classList.add('active');
           
-          // Populate property details
           const propertyName = card.querySelector('.property-name').textContent;
           detailsPopup.querySelector('.property-address').textContent = propertyName;
           
-          // Set status information
           const status = card.querySelector('.application-status').textContent;
           const statusLabel = detailsPopup.querySelector('.status-label');
           statusLabel.textContent = status;
           statusLabel.className = `status-label ${status.toLowerCase()}`;
           
-          // Populate applicants list
           const applicantsList = detailsPopup.querySelector('.applicants-list');
-          applicantsList.innerHTML = ''; // Clear existing applicants
+          applicantsList.innerHTML = '';
           
           const primaryApplicant = card.querySelector('.primary-applicant');
           const applicantName = primaryApplicant.querySelector('h4').textContent;
