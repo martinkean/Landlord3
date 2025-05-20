@@ -104,7 +104,7 @@
         <!-- Charts -->
         <div class="chart-card wide">
           <h2>Market Rent Demand</h2>
-          <p class="chart-description">Distribution of rent prices for listings users are interested in</p>
+          <p class="chart-description">Interest rate by rent price per room</p>
           <canvas id="rentDemandChart"></canvas>
         </div>
         
@@ -178,33 +178,40 @@
       new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['$200', '$250', '$300', '$350', '$400'],
+          labels: ['$200', '$225', '$250', '$275', '$300', '$325', '$350', '$375', '$400'],
           datasets: [
             {
               label: 'Interest Rate',
-              data: [75, 60, 40, 25, 15],
+              data: [75, 70, 60, 50, 40, 35, 25, 20, 15],
               borderColor: '#14B8A6',
               backgroundColor: 'rgba(20, 184, 166, 0.1)',
               tension: 0.4,
               fill: true,
-              pointRadius: 6,
+              pointRadius: 4,
               pointBackgroundColor: '#14B8A6'
             }
           ]
         },
         options: {
           responsive: true,
-          maintainAspectRatio: false,
+          maintainAspectRatio: true,
+          aspectRatio: 2.5,
           scales: {
             y: {
               beginAtZero: true,
               max: 100,
+              grid: {
+                color: 'rgba(0, 0, 0, 0.05)'
+              },
               title: {
                 display: true,
                 text: 'Interest Rate (%)'
               }
             },
             x: {
+              grid: {
+                display: false
+              },
               title: {
                 display: true,
                 text: 'Rent per Room'
@@ -216,6 +223,11 @@
               display: false
             },
             tooltip: {
+              backgroundColor: 'rgba(255, 255, 255, 0.9)',
+              titleColor: '#1E293B',
+              bodyColor: '#1E293B',
+              borderColor: '#E2E8F0',
+              borderWidth: 1,
               callbacks: {
                 label: function(context) {
                   return `Interest Rate: ${context.parsed.y}%`;
