@@ -73,7 +73,7 @@
 
 .chart-card.wide {
   grid-column: 1 / -1;
-  min-height: 350px;
+  min-height: 400px;
 }
 
 .chart-card h2 {
@@ -90,16 +90,16 @@
 
 /* Swipe Distribution */
 .swipe-distribution {
-  padding: var(--space-lg) 0;
+  padding: var(--space-xl) var(--space-lg);
 }
 
 .swipe-bar {
-  height: 48px;
+  height: 56px;
   background-color: var(--light-gray);
   border-radius: var(--radius-lg);
   display: flex;
   overflow: hidden;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-xl);
 }
 
 .swipe-segment {
@@ -123,10 +123,12 @@
 
 .swipe-label {
   font-size: var(--font-size-sm);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .swipe-percentage {
   font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .swipe-legend {
@@ -159,7 +161,8 @@
 
 #rentDemandChart {
   width: 100%;
-  margin: var(--space-md) 0;
+  height: 300px;
+  margin: var(--space-xl) 0;
 }
 
 #swipeDistributionChart {
