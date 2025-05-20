@@ -162,3 +162,80 @@
 .legend-color.passed {
   background-color: #A6E7AB;
 }
+
+/* Rent Stats */
+.rent-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-lg) 0;
+}
+
+.rent-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.rent-stat-item h3 {
+  font-size: var(--font-size-md);
+  color: var(--text);
+  margin-bottom: 0;
+}
+
+.rent-stat-item p {
+  font-size: var(--font-size-sm);
+  color: var(--text-light);
+}
+
+/* Listing Stats */
+.listings-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-lg) 0;
+}
+
+.listing-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.listing-stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listing-stat-header h3 {
+  font-size: var(--font-size-md);
+  margin: 0;
+}
+
+.interest-rate {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.stat-bar {
+  height: 8px;
+  background-color: var(--light-gray);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.stat-fill {
+  height: 100%;
+  background-color: var(--primary);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.stat-fill.success {
+  background-color: var(--success);
+}
+
+.stat-fill.warning {
+  background-color: var(--warning);
+}
