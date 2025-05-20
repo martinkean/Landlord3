@@ -67,47 +67,131 @@
     
     <!-- Main Content -->
     <main class="main-content">
-      <h1 class="page-title">Dashboard</h1>
+      <div class="page-header">
+        <h1 class="page-title">Welcome back, Andrew!</h1>
+      </div>
       
       <div class="dashboard-grid">
-        <!-- Stats Cards Row 1 -->
-        <div class="stats-card">
-          <h2>Active Listings</h2>
-          <div class="stats-number">4</div>
-          <p class="stats-description">Currently published properties</p>
+        <!-- Quick Actions -->
+        <div class="quick-actions-card">
+          <h2>Quick Actions</h2>
+          <div class="quick-actions">
+            <a href="listings.html" class="action-btn">
+              <div class="action-icon add-icon"></div>
+              <span>Add New Listing</span>
+            </a>
+            <a href="applications.html" class="action-btn">
+              <div class="action-icon review-icon"></div>
+              <span>Review Applications</span>
+            </a>
+            <a href="calendar.html" class="action-btn">
+              <div class="action-icon schedule-icon"></div>
+              <span>Schedule Viewing</span>
+            </a>
+          </div>
         </div>
         
         <div class="stats-card">
-          <h2>New Applications</h2>
-          <div class="stats-number">2</div>
-          <p class="stats-description">New applications awaiting review</p>
-          <div class="notification-icon"></div>
+          <h2>Needs Attention</h2>
+          <div class="attention-items">
+            <a href="applications.html" class="attention-item">
+              <div class="attention-icon applications-attention"></div>
+              <div class="attention-content">
+                <h3>2 New Applications</h3>
+                <p>Awaiting your review</p>
+              </div>
+              <div class="attention-arrow"></div>
+            </a>
+            <a href="messages.html" class="attention-item">
+              <div class="attention-icon messages-attention"></div>
+              <div class="attention-content">
+                <h3>1 Unread Message</h3>
+                <p>From Gabe Cook-Bonney</p>
+              </div>
+              <div class="attention-arrow"></div>
+            </a>
+          </div>
         </div>
         
-        <!-- Stats Cards Row 2 -->
+        <!-- Property Overview -->
         <div class="stats-card">
-          <h2>Unread Messages</h2>
-          <div class="stats-number">1</div>
-          <p class="stats-description">Messages needing attention</p>
-          <div class="message-icon"></div>
+          <h2>Property Overview</h2>
+          <div class="property-stats">
+            <div class="stat-item">
+              <div class="stat-number">4</div>
+              <p>Active Listings</p>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">85%</div>
+              <p>Average Interest Rate</p>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">$250</div>
+              <p>Avg. Price per Room</p>
+            </div>
+          </div>
         </div>
         
+        <!-- Today's Schedule -->
         <div class="stats-card">
-          <h2>Upcoming Events</h2>
-          <div class="stats-number">3</div>
-          <p class="stats-description">Today 26th June, 2025</p>
+          <h2>Today's Schedule</h2>
+          <div class="schedule-list">
+            <a href="calendar.html" class="schedule-item">
+              <div class="schedule-time">13:00</div>
+              <div class="schedule-content">
+                <h3>Flat inspection</h3>
+                <p>33 Bedford Street</p>
+              </div>
+            </a>
+            <a href="calendar.html" class="schedule-item">
+              <div class="schedule-time">14:30</div>
+              <div class="schedule-content">
+                <h3>Pre tenant inspection</h3>
+                <p>123 North Rd</p>
+              </div>
+            </a>
+            <a href="calendar.html" class="schedule-item">
+              <div class="schedule-time">16:00</div>
+              <div class="schedule-content">
+                <h3>Tenant interview</h3>
+                <p>78 George Street</p>
+              </div>
+            </a>
+          </div>
         </div>
         
         <!-- Recent Activity -->
         <div class="activity-card">
           <h2>Recent Activity</h2>
-          <p class="activity-subtitle">Latest updates on your listings</p>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="activity-icon document-icon"></div>
+              <div class="activity-content">
+                <h3>New application received</h3>
+                <p>Charlie Brown + 5 others for 33 Bedford Street</p>
+                <span class="activity-time">1 day ago</span>
+              </div>
+              <a href="applications.html" class="activity-action">Review</a>
+            </div>
           
-          <div class="activity-item">
-            <div class="activity-icon document-icon"></div>
-            <div class="activity-content">
-              <h3>New application: Charlie Brown with 5 others</h3>
-              <p>For 33 Bedford Street - 1 day ago</p>
+            <div class="activity-item">
+              <div class="activity-icon message-icon"></div>
+              <div class="activity-content">
+                <h3>New message received</h3>
+                <p>From Gabe Cook-Bonney about hot water cylinder</p>
+                <span class="activity-time">2 days ago</span>
+              </div>
+              <a href="messages.html" class="activity-action">Reply</a>
+            </div>
+            
+            <div class="activity-item">
+              <div class="activity-icon listing-icon"></div>
+              <div class="activity-content">
+                <h3>Listing updated</h3>
+                <p>Price updated for 78 George Street</p>
+                <span class="activity-time">3 days ago</span>
+              </div>
+              <a href="listings.html" class="activity-action">View</a>
             </div>
           </div>
         </div>
