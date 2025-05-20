@@ -92,7 +92,75 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.chart-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--off-white);
+  border-radius: var(--radius-md);
+}
+
+/* Pie Chart */
+.pie-chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xxl);
+}
+
+.pie-chart-container {
+  width: 150px;
+  height: 150px;
   position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.pie-segment {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+}
+
+.pie-segment.interested {
+  background-color: #FFC3C2;
+  clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 50% 100%);
+  --percentage: 56%;
+  transform: rotate(calc((100% - var(--percentage)) * 3.6deg));
+}
+
+.pie-segment.passed {
+  background-color: #A6E7AB;
+  clip-path: polygon(50% 50%, 50% 0%, 0% 0%, 0% 100%, 50% 100%);
+}
+
+.chart-legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.legend-color.interested {
+  background-color: #FFC3C2;
+}
+
+.legend-color.passed {
+  background-color: #A6E7AB;
 }
 
 /* Rent Demand Container */
