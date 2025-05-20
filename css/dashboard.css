@@ -27,20 +27,18 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-sm);
-  padding: var(--space-lg);
+  padding: var(--space-md);
   background-color: var(--off-white);
   border-radius: var(--radius-md);
   text-decoration: none;
   color: var(--text);
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
+  transition: all 0.2s ease;
 }
 
 .action-btn:hover {
-  background-color: rgba(20, 184, 166, 0.1);
+  background-color: var(--primary-light);
   color: var(--text);
   transform: translateY(-2px);
-  border-color: var(--primary);
 }
 
 .action-icon {
@@ -72,43 +70,22 @@
   border-radius: var(--radius-md);
   text-decoration: none;
   color: var(--text);
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
-  position: relative;
-  overflow: hidden;
+  transition: all 0.2s ease;
 }
 
 .attention-item:hover {
-  background-color: rgba(20, 184, 166, 0.1);
+  background-color: var(--primary-light);
   transform: translateY(-2px);
-  border-color: var(--primary);
-}
-
-.attention-item::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.attention-item:hover::after {
-  opacity: 1;
 }
 
 .attention-icon {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background-color: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 4px rgba(20, 184, 166, 0.2);
 }
 
 .attention-content {
@@ -179,22 +156,17 @@
   border-radius: var(--radius-md);
   text-decoration: none;
   color: var(--text);
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
+  transition: all 0.2s ease;
 }
 
 .schedule-item:hover {
-  background-color: rgba(20, 184, 166, 0.1);
+  background-color: var(--primary-light);
   transform: translateY(-2px);
-  border-color: var(--primary);
 }
 
 .schedule-time {
   font-weight: 600;
   color: var(--primary);
-  background-color: rgba(20, 184, 166, 0.1);
-  padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--radius-sm);
 }
 
 .schedule-content h3 {
@@ -243,14 +215,12 @@
   padding: var(--space-md);
   background-color: var(--off-white);
   border-radius: var(--radius-md);
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
+  transition: all 0.2s ease;
 }
 
 .activity-item:hover {
-  background-color: rgba(20, 184, 166, 0.1);
+  background-color: var(--primary-light);
   transform: translateY(-2px);
-  border-color: var(--primary);
 }
 
 .activity-icon {
@@ -292,21 +262,12 @@
   border-radius: var(--radius-sm);
   font-size: var(--font-size-xs);
   text-decoration: none;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  transition: background-color 0.2s ease;
 }
 
 .activity-action:hover {
   background-color: var(--primary-dark);
   color: var(--white);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(20, 184, 166, 0.2);
-}
-
-.activity-action:active {
-  transform: translateY(0);
-  box-shadow: none;
 }
 
 /* Activity Card */
