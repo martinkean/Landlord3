@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="css/analytics.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
 <body>
   <div class="app-container">
@@ -194,22 +193,20 @@
   </div>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      Chart.register(ChartDataLabels);
-      
       // Rent Demand Chart
       const ctx = document.getElementById('rentDemandChart').getContext('2d');
       
       new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['$200-250', '$250-300', '$300-350', '$350+'],
+          labels: ['$200', '$250', '$300', '$350'],
           datasets: [
             {
               label: 'Interest Rate',
               data: [75, 60, 40, 25],
               borderColor: '#14B8A6',
               backgroundColor: 'rgba(20, 184, 166, 0.1)',
-              tension: 0.3,
+              tension: 0.4,
               fill: true,
               pointRadius: 6,
               pointBackgroundColor: '#14B8A6'
@@ -219,7 +216,7 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          aspectRatio: 1.75,
+          aspectRatio: 2,
           scales: {
             y: {
               beginAtZero: true,
@@ -230,9 +227,6 @@
               title: {
                 display: true,
                 text: 'Interest Rate (%)'
-              }
-              ticks: {
-                callback: value => `${value}%`
               }
             },
             x: {
@@ -248,13 +242,6 @@
           plugins: {
             legend: {
               display: false
-            },
-            datalabels: {
-              color: '#1E293B',
-              anchor: 'end',
-              align: 'top',
-              offset: 8,
-              formatter: value => `${value}%`
             },
             tooltip: {
               backgroundColor: 'rgba(255, 255, 255, 0.9)',
