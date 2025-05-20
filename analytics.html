@@ -104,14 +104,23 @@
         <!-- Charts -->
         <div class="chart-card wide">
           <h2>Market Rent Demand</h2>
-          <p class="chart-description">Interest rate by rent price per room</p>
+          <p class="chart-description">Distribution of rent prices for listings users are interested in</p>
           <canvas id="rentDemandChart"></canvas>
         </div>
         
         <div class="chart-card wide">
           <h2>Swipe Distribution</h2>
           <p class="chart-description">Break down of interested vs. passed swipes</p>
-          <canvas id="swipeDistributionChart"></canvas>
+          <div class="swipe-distribution">
+            <div class="swipe-bar">
+              <div class="swipe-segment interested" style="width: 55.6%">
+                <span class="swipe-label">Interested (55.6%)</span>
+              </div>
+              <div class="swipe-segment passed" style="width: 44.4%">
+                <span class="swipe-label">Passed (44.4%)</span>
+              </div>
+            </div>
+          </div>
         </div>
         
         <div class="chart-card wide">
@@ -174,38 +183,45 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Rent Demand Chart
       const ctx = document.getElementById('rentDemandChart').getContext('2d');
-      
+      Chart.defaults.font.family = "'Inter', sans-serif";
+
       new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['$200', '$225', '$250', '$275', '$300', '$325', '$350', '$375', '$400'],
+          labels: ['$200-250', '$250-300', '$300-350', '$350+'],
           datasets: [
             {
               label: 'Interest Rate',
-              data: [75, 70, 60, 50, 40, 35, 25, 20, 15],
+              data: [75, 60, 40, 25],
               borderColor: '#14B8A6',
               backgroundColor: 'rgba(20, 184, 166, 0.1)',
               tension: 0.4,
               fill: true,
-              pointRadius: 4,
+              pointRadius: 6,
               pointBackgroundColor: '#14B8A6'
             }
           ]
         },
         options: {
           responsive: true,
-          maintainAspectRatio: true,
-          aspectRatio: 2.5,
+          maintainAspectRatio: false,
+          aspectRatio: 2,
           scales: {
             y: {
               beginAtZero: true,
               max: 100,
               grid: {
-                color: 'rgba(0, 0, 0, 0.05)'
+                color: 'rgba(0, 0, 0, 0.1)',
+                drawBorder: false
               },
               title: {
                 display: true,
                 text: 'Interest Rate (%)'
+              },
+              ticks: {
+                callback: function(value) {
+                  return value + '%';
+                }
               }
             },
             x: {
@@ -214,7 +230,7 @@
               },
               title: {
                 display: true,
-                text: 'Rent per Room'
+                text: 'Weekly Rent per Room'
               }
             }
           },
@@ -231,65 +247,6 @@
               callbacks: {
                 label: function(context) {
                   return `Interest Rate: ${context.parsed.y}%`;
-                }
-              }
-            }
-          }
-        }
-      });
-      
-      // Swipe Distribution Chart
-      const swipeCtx = document.getElementById('swipeDistributionChart').getContext('2d');
-      
-      new Chart(swipeCtx, {
-        type: 'bar',
-        data: {
-          labels: ['Swipe Distribution'],
-          datasets: [
-            {
-              label: 'Interested',
-              data: [55.6],
-              backgroundColor: '#22C55E',
-              barPercentage: 0.8
-            },
-            {
-              label: 'Passed',
-              data: [44.4],
-              backgroundColor: '#F97316',
-              barPercentage: 0.8
-            }
-          ]
-        },
-        options: {
-          indexAxis: 'y',
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            x: {
-              stacked: true,
-              max: 100,
-              title: {
-                display: true,
-                text: 'Percentage (%)'
-              }
-            },
-            y: {
-              stacked: true,
-              display: false
-            }
-          },
-          plugins: {
-            legend: {
-              position: 'bottom',
-              labels: {
-                usePointStyle: true,
-                padding: 20
-              }
-            },
-            tooltip: {
-              callbacks: {
-                label: function(context) {
-                  return `${context.dataset.label}: ${context.parsed.x}%`;
                 }
               }
             }

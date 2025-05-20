@@ -73,7 +73,7 @@
 
 .chart-card.wide {
   grid-column: 1 / -1;
-  min-height: 350px;
+  min-height: 400px;
 }
 
 .chart-card h2 {
@@ -90,13 +90,44 @@
 
 #rentDemandChart {
   width: 100%;
-  margin: var(--space-md) 0;
+  height: 300px !important;
+  margin: var(--space-lg) 0;
 }
 
-#swipeDistributionChart {
+/* Swipe Distribution */
+.swipe-distribution {
+  padding: var(--space-xl) 0;
+}
+
+.swipe-bar {
+  height: 40px;
+  display: flex;
   width: 100%;
-  height: 120px;
-  margin: var(--space-lg) 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.swipe-segment {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-weight: 500;
+  transition: width 0.3s ease;
+}
+
+.swipe-segment.interested {
+  background-color: var(--success);
+}
+
+.swipe-segment.passed {
+  background-color: var(--warning);
+}
+
+.swipe-label {
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
 }
 
 /* Rent Stats */
