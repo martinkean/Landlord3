@@ -88,17 +88,15 @@
 }
 
 /* Line Chart Styles */
-.line-chart {
+.market-demand-chart {
   padding: var(--space-lg);
   height: 300px;
-}
-
-.chart-grid {
   display: grid;
-  grid-template-columns: 50px 1fr;
-  grid-template-rows: 1fr 30px;
-  height: 100%;
+  grid-template-columns: 60px 1fr;
+  grid-template-rows: 1fr 40px;
   gap: var(--space-md);
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
 }
 
 .y-axis {
@@ -107,24 +105,29 @@
   justify-content: space-between;
   align-items: flex-end;
   padding-right: var(--space-sm);
-  color: var(--text-light);
+  color: var(--medium-gray);
   font-size: var(--font-size-xs);
 }
 
 .x-axis {
   grid-column: 2;
   display: flex;
-  justify-content: space-between;
-  color: var(--text-light);
+  justify-content: space-around;
+  color: var(--medium-gray);
   font-size: var(--font-size-xs);
   padding-top: var(--space-xs);
 }
 
 .chart-area {
   position: relative;
-  background-color: var(--off-white);
+  background-color: var(--white);
   border-radius: var(--radius-md);
   overflow: hidden;
+}
+
+.grid-lines line {
+  stroke: var(--light-gray);
+  stroke-width: 1;
 }
 
 .chart-area svg {
@@ -135,12 +138,11 @@
 .trend-line {
   fill: none;
   stroke: var(--primary);
-  stroke-width: 2;
+  stroke-width: 3;
 }
 
 .data-point {
   fill: var(--primary);
-}
 .chart {
   height: 200px;
   display: flex;
