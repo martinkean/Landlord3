@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/sidebar.css">
   <link rel="stylesheet" href="css/analytics.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="app-container">
@@ -104,35 +105,6 @@
         <div class="chart-card wide">
           <h2>Market Rent Demand</h2>
           <p class="chart-description">Distribution of rent prices for listings users are interested in</p>
-          <div class="rent-demand-container">
-            <div class="rent-stats">
-              <div class="rent-stat-item">
-                <h3>$200-250</h3>
-                <div class="stat-bar">
-                  <div class="stat-fill" style="width: 75%"></div>
-                </div>
-                <p>75% of interest</p>
-              </div>
-              <div class="rent-stat-item">
-                <h3>$250-300</h3>
-                <div class="stat-bar">
-                  <div class="stat-fill" style="width: 60%"></div>
-                </div>
-                <p>60% of interest</p>
-              </div>
-              <div class="rent-stat-item">
-                <h3>$300-350</h3>
-                <div class="stat-bar">
-                  <div class="stat-fill" style="width: 40%"></div>
-                </div>
-                <p>40% of interest</p>
-              </div>
-              <div class="rent-stat-item">
-                <h3>$350+</h3>
-                <div class="stat-bar">
-                  <div class="stat-fill" style="width: 25%"></div>
-                </div>
-                <p>25% of interest</p>
               </div>
             </div>
             <div class="rent-pie-chart">
@@ -159,86 +131,161 @@
                   <div class="legend-color price-350-plus"></div>
                   <div class="legend-text">$350+ (12.5%)</div>
                 </div>
-              </div>
-            </div>
-          </div>
+          <canvas id="rentDemandChart"></canvas>
         </div>
         
         <div class="chart-card wide">
           <h2>Swipe Distribution</h2>
           <p class="chart-description">Break down of interested vs. passed swipes</p>
-          <div class="chart pie-chart">
-            <div class="pie-chart-container">
-              <div class="pie-segment interested" style="--percentage: 56%"></div>
-              <div class="pie-segment passed" style="--percentage: 44%"></div>
-            </div>
-            <div class="chart-legend">
-              <div class="legend-item">
-                <div class="legend-color passed"></div>
-                <div class="legend-text">Passed - 44%</div>
-              </div>
-              <div class="legend-item">
-                <div class="legend-color interested"></div>
-                <div class="legend-text">Interested - 56%</div>
-              </div>
-            </div>
-          </div>
+          <canvas id="swipeDistributionChart"></canvas>
         </div>
         
         <div class="chart-card wide">
           <h2>Top Performing Listings</h2>
           <p class="chart-description">Your listings with the highest interest rates</p>
-          <div class="listings-stats">
-            <div class="listing-stat">
-              <div class="listing-stat-header">
-                <h3>33 Bedford Street</h3>
-                <span class="interest-rate">85%</span>
-              </div>
-              <div class="stat-bar">
-                <div class="stat-fill success" style="width: 85%"></div>
-              </div>
-              <p>42 interested / 50 views</p>
-            </div>
-            <div class="listing-stat">
-              <div class="listing-stat-header">
-                <h3>78 George Street</h3>
-                <span class="interest-rate">75%</span>
-              </div>
-              <div class="stat-bar">
-                <div class="stat-fill success" style="width: 75%"></div>
-              </div>
-              <p>30 interested / 40 views</p>
-            </div>
-          </div>
+          <canvas id="topListingsChart"></canvas>
         </div>
         
         <div class="chart-card wide">
           <h2>Listings Needing Attention</h2>
           <p class="chart-description">Your listings with low interest rates</p>
-          <div class="listings-stats">
-            <div class="listing-stat">
-              <div class="listing-stat-header">
-                <h3>123 Castle Street</h3>
-                <span class="interest-rate">25%</span>
-              </div>
-              <div class="stat-bar">
-                <div class="stat-fill warning" style="width: 25%"></div>
-              </div>
-              <p>5 interested / 20 views</p>
-            </div>
-            <div class="listing-stat">
-              <div class="listing-stat-header">
-                <h3>45 Dundas Street</h3>
-                <span class="interest-rate">30%</span>
-              </div>
-              <div class="stat-bar">
-                <div class="stat-fill warning" style="width: 30%"></div>
-              </div>
-              <p>9 interested / 30 views</p>
-            </div>
-          </div>
+          <canvas id="attentionListingsChart"></canvas>
         </div>
       </div>
+      
+      <script>
+        // Market Rent Demand Chart
+        const rentDemandCtx = document.getElementById('rentDemandChart').getContext('2d');
+        new Chart(rentDemandCtx, {
+          type: 'bar',
+          data: {
+            labels: ['$200-250', '$250-300', '$300-350', '$350+'],
+            datasets: [{
+              label: 'Interest Rate',
+              data: [75, 60, 40, 25],
+              backgroundColor: [
+                '#14B8A6',
+                '#0D9488',
+                '#0F766E',
+                '#134E4A'
+              ],
+              borderRadius: 6
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                  callback: value => value + '%'
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        });
+
+        // Swipe Distribution Chart
+        const swipeDistributionCtx = document.getElementById('swipeDistributionChart').getContext('2d');
+        new Chart(swipeDistributionCtx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Interested', 'Passed'],
+            datasets: [{
+              data: [56, 44],
+              backgroundColor: [
+                '#FFC3C2',
+                '#A6E7AB'
+              ],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'right'
+              }
+            }
+          }
+        });
+
+        // Top Performing Listings Chart
+        const topListingsCtx = document.getElementById('topListingsChart').getContext('2d');
+        new Chart(topListingsCtx, {
+          type: 'bar',
+          data: {
+            labels: ['33 Bedford Street', '78 George Street'],
+            datasets: [{
+              label: 'Interest Rate',
+              data: [85, 75],
+              backgroundColor: '#22C55E',
+              borderRadius: 6
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            scales: {
+              x: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                  callback: value => value + '%'
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        });
+
+        // Listings Needing Attention Chart
+        const attentionListingsCtx = document.getElementById('attentionListingsChart').getContext('2d');
+        new Chart(attentionListingsCtx, {
+          type: 'bar',
+          data: {
+            labels: ['123 Castle Street', '45 Dundas Street'],
+            datasets: [{
+              label: 'Interest Rate',
+              data: [25, 30],
+              backgroundColor: '#F97316',
+              borderRadius: 6
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            scales: {
+              x: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                  callback: value => value + '%'
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        });
+      </script>
     </main>
   </div>
 </body>
